@@ -23,7 +23,7 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : '/images/profile.jpg' #"profile.png"
   name             : "Diego Juarez"
   pronouns         : 'He/Him/His'# example: "she/her"  
   bio              : "Physics and computational science student specializing in numerical methods and scientific computing. I build and analyze simulations to solve complex problems."
