@@ -25,8 +25,8 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "Diego Juarez"
-  pronouns         : # example: "she/her"  
-  bio              : "Short biography for the left-hand sidebar"
+  pronouns         : 'He/Him/His'# example: "she/her"  
+  bio              : "Physics and computational science student specializing in numerical methods and scientific computing. I build and analyze simulations to solve complex problems."
   location         : "El Paso TX"
   employer         : "The University of Texas at El Paso"
   uri              : 'https://www.utep.edu/science/physics/# URL'
