@@ -2,7 +2,7 @@
 title: "Utilities To Execute Pipelines"
 excerpt: "This framework automates the set up, submission, and execution of scientific codes,
 generally taking care of the minutiae. Post-processing tasks, such as the development of machine
-learning models, are easier because of a common data structure. 1<br/><img src='/images/500x300.png'>"
+learning models, are easier because of a common data structure. <br/><img src='/images/500x300.png'>"
 collection: portfolio
 ---
 
@@ -14,3 +14,6 @@ learning models, are easier because of a common data structure. UTEP was deploye
 it can be deployed on any Unix system. Here we present instances of UTEP applied to projects
 in computational thermodynamics of alloys, lattice dynamics of crystals, charge distributions in a
 semiconductor, and a multi-objective genetic algorithms used to test crystal stability.
+
+<object data= "/images/utep.pdf" type = "applications/pdf" widht = "50%">
+</object>
