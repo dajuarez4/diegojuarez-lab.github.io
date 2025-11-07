@@ -16,6 +16,9 @@ in computational thermodynamics of alloys, lattice dynamics of crystals, charge 
 semiconductor, and a multi-objective genetic algorithms used to test crystal stability.
 
 
+<img src="{{ '/images/utep_logo.png' | relative_url }}" alt="Phonon simulation animation"
+         style="max-width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
+
 <!-- Fallback links -->
 <p style="text-align:center;">
   <a class="btn btn--primary" href="{{ '/images/utep.pdf' | relative_url }}" target="_blank">Open PDF</a>
