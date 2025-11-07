@@ -5,8 +5,6 @@ generally taking care of the minutiae. Post-processing tasks, such as the develo
 learning models, are easier because of a common data structure. <br/><img src='/images/utep_logo.png'>"
 collection: portfolio
 ---
-<img src="{{ '/images/utep_logo.png' | relative_url }}" alt="UTEP Logo"
-         style="max-width:50%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
 
 To reduce human error in creating input files for simulations, especially when handling hundreds or even thousands of jobs, we developed Utilities to Execute Pipelines (UTEP), a robust
 and versatile Python framework to streamline the generation and analysis of large-scale scientific
@@ -16,6 +14,9 @@ learning models, are easier because of a common data structure. UTEP was deploye
 it can be deployed on any Unix system. Here we present instances of UTEP applied to projects
 in computational thermodynamics of alloys, lattice dynamics of crystals, charge distributions in a
 semiconductor, and a multi-objective genetic algorithms used to test crystal stability.
+
+<img src="{{ '/images/utep_logo.png' | relative_url }}" alt="UTEP Logo"
+         style="max-width:40%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
 
 
 
