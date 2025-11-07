@@ -15,14 +15,22 @@ it can be deployed on any Unix system. Here we present instances of UTEP applied
 in computational thermodynamics of alloys, lattice dynamics of crystals, charge distributions in a
 semiconductor, and a multi-objective genetic algorithms used to test crystal stability.
 
-<!-- <object data= "/images/utep.pdf" type = "applications/pdf" widht = "50%">
-</object> -->
-
-
-<div style="text-align:center;">
-  <img src="{{ '/images/utep.pdf' | relative_url }}" alt="Phonon simulation animation"
-       style="max-width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
+!-- Embed PDF -->
+<div style="margin:1rem 0;">
+  <object data="{{ '/files/utep.pdf#toolbar=0&view=FitH' | relative_url }}"
+          type="application/pdf" width="100%" height="800px">
+    <iframe src="{{ '/files/utep.pdf#toolbar=0&view=FitH' | relative_url }}"
+            width="100%" height="800px">
+    </iframe>
+  </object>
 </div>
+
+<!-- Fallback links -->
+<p style="text-align:center;">
+  <a class="btn btn--primary" href="{{ '/files/utep.pdf' | relative_url }}" target="_blank">Open PDF</a>
+  &nbsp;|&nbsp;
+  <a href="{{ '/files/utep.pdf' | relative_url }}" download>Download PDF</a>
+</p>
 
 
 
