@@ -2,7 +2,7 @@
 title: "Utilities To Execute Pipelines"
 excerpt: "This framework automates the set up, submission, and execution of scientific codes,
 generally taking care of the minutiae. Post-processing tasks, such as the development of machine
-learning models, are easier because of a common data structure. <br/><img src='images/utep_logo.png'>"
+learning models, are easier because of a common data structure."
 collection: portfolio
 ---
 
