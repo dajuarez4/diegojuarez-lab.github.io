@@ -34,6 +34,6 @@ redirect_from:
   </div>
   <div style="text-align:center;">
     <img src="{{ '/images/GaAs_phon.gif' | relative_url }}" alt="Phonon simulation GaAa animation"
-         style="max-width:150%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.0);" loading="lazy">
+         style="max-width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.0);" loading="lazy">
   </div>
 </div>
