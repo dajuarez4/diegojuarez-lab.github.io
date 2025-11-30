@@ -1,4 +1,4 @@
----
+<img width="1904" height="1130" alt="image" src="https://github.com/user-attachments/assets/8999c3d1-0c0b-4efe-8e84-2a7a2cb93507" />---
 permalink: /
 title: "Diego Armando Juarez Rosales"
 author_profile: true
@@ -93,4 +93,118 @@ redirect_from:
     </p>
   </div>
 </div>
+
+
+
+<div id="game-container" style="text-align:center;">
+  <h2>Game 🎮</h2>
+  <canvas id="gameCanvas" width="800" height="400" style="border:1px solid #ccc;"></canvas>
+</div>
+
+<script>
+// -------------------------------
+// Configuración básica del canvas
+// -------------------------------
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+
+// -------------------------------
+// Crear pelotas
+// -------------------------------
+const balls = [];
+const NUM_BALLS = 6;
+
+const colors = ["#e63946", "#457b9d", "#2a9d8f", "#f4a261", "#e9c46a", "#8d99ae"];
+
+for (let i = 0; i < NUM_BALLS; i++) {
+  const radius = 25;
+  const x = Math.random() * (canvas.width - 2 * radius) + radius;
+  const y = Math.random() * (canvas.height - 2 * radius) + radius;
+
+  balls.push({
+    x: x,
+    y: y,
+    radius: radius,
+    color: colors[i % colors.length]
+  });
+}
+
+// -------------------------------
+// Dibuja todas las pelotas
+// -------------------------------
+function drawBalls() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (const ball of balls) {
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+    ctx.fillStyle = ball.color;
+    ctx.fill();
+    ctx.closePath();
+  }
+}
+
+drawBalls();
+
+// -------------------------------
+// Lógica de arrastre con el mouse
+// -------------------------------
+let draggingBall = null;
+let offsetX = 0;
+let offsetY = 0;
+
+// Obtiene coordenadas del mouse relativas al canvas
+function getMousePos(evt) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+  };
+}
+
+// Mousedown: revisar si clickeamos una pelota
+canvas.addEventListener("mousedown", function(evt) {
+  const mousePos = getMousePos(evt);
+
+  // Revisar de arriba hacia abajo para agarrar la última dibujada primero
+  for (let i = balls.length - 1; i >= 0; i--) {
+    const ball = balls[i];
+    const dx = mousePos.x - ball.x;
+    const dy = mousePos.y - ball.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance <= ball.radius) {
+      draggingBall = ball;
+      offsetX = dx;
+      offsetY = dy;
+
+      // Llevar esta pelota al frente (última en el array)
+      balls.splice(i, 1);
+      balls.push(ball);
+      break;
+    }
+  }
+});
+
+// Mousemove: si estamos arrastrando, mover pelota
+canvas.addEventListener("mousemove", function(evt) {
+  if (!draggingBall) return;
+
+  const mousePos = getMousePos(evt);
+  draggingBall.x = mousePos.x - offsetX;
+  draggingBall.y = mousePos.y - offsetY;
+
+  // Evitar que salga del canvas
+  const r = draggingBall.radius;
+  draggingBall.x = Math.max(r, Math.min(canvas.width - r, draggingBall.x));
+  draggingBall.y = Math.max(r, Math.min(canvas.height - r, draggingBall.y));
+
+  drawBalls();
+});
+
+// Mouseup: soltar pelota
+window.addEventListener("mouseup", function() {
+  draggingBall = null;
+});
+</script>
 
