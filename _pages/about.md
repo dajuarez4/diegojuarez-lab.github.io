@@ -1,4 +1,5 @@
-<img width="1904" height="1130" alt="image" src="https://github.com/user-attachments/assets/8999c3d1-0c0b-4efe-8e84-2a7a2cb93507" />---
+---
+layout: home
 permalink: /
 title: "Diego Armando Juarez Rosales"
 author_profile: true
@@ -6,6 +7,7 @@ redirect_from:
   - /about/
   - /about.html
 ---
+
 
 
 
