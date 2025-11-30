@@ -8,24 +8,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const height = canvas.height;
 
   // -------------------------------
-  // Parámetros de la "red atómica"
+  // Parámetros de la red atómica
   // -------------------------------
-  const cols = 16;    // Número de átomos en x
-  const rows = 8;     // Número de átomos en y
+  const cols = 14;   // átomos en x
+  const rows = 7;    // átomos en y
   const atoms = [];
-  const padding = 50;
+  const paddingX = 80;
+  const paddingY = 70;
 
-  const dx = (width - 2 * padding) / (cols - 1);
-  const dy = (height - 2 * padding) / (rows - 1);
+  const dx = (width - 2 * paddingX) / (cols - 1);
+  const dy = (height - 2 * paddingY) / (rows - 1);
 
   for (let j = 0; j < rows; j++) {
     for (let i = 0; i < cols; i++) {
-      const x = padding + i * dx;
-      const y = padding + j * dy;
-      atoms.push({
-        baseX: x,
-        baseY: y
-      });
+      const x = paddingX + i * dx;
+      const y = paddingY + j * dy;
+      atoms.push({ baseX: x, baseY: y });
     }
   }
 
@@ -51,9 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Animación principal
   // -------------------------------
   function draw(time) {
-    ctx.clearRect(0, 0, width, height);
-
-    // Fondo suave
+    // Fondo
     const grad = ctx.createRadialGradient(
       width / 2, height / 2, 10,
       width / 2, height / 2, width / 1.2
@@ -63,6 +59,14 @@ document.addEventListener("DOMContentLoaded", function () {
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, width, height);
 
+    // Texto guía
+    ctx.save();
+    ctx.fillStyle = "rgba(148, 163, 184, 0.8)";
+    ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("Click anywhere to excite a phonon wave ✨", width / 2, 32);
+    ctx.restore();
+
     // Eliminar ondas viejas
     for (let i = waves.length - 1; i >= 0; i--) {
       if (time - waves[i].t0 > WAVE_LIFETIME) {
@@ -70,15 +74,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Dibujar enlaces (lattice lines)
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = "rgba(148, 163, 184, 0.35)";
+    // Dibujar enlaces de la red
+    ctx.lineWidth = 1.3;
+    ctx.strokeStyle = "rgba(148, 163, 184, 0.45)";
     for (let j = 0; j < rows; j++) {
       for (let i = 0; i < cols; i++) {
         const idx = j * cols + i;
         const atom = atoms[idx];
 
-        // Línea horizontal
         if (i < cols - 1) {
           const atomR = atoms[idx + 1];
           ctx.beginPath();
@@ -86,8 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
           ctx.lineTo(atomR.baseX, atomR.baseY);
           ctx.stroke();
         }
-
-        // Línea vertical
         if (j < rows - 1) {
           const atomD = atoms[idx + cols];
           ctx.beginPath();
@@ -111,10 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const dy = atom.baseY - w.y;
         const r = Math.hypot(dx, dy);
 
-        const k = 1 / 25;          // "número de onda"
-        const omega = 6;           // frecuencia angular
-        const decaySpace = Math.exp(-r / 180);
-        const decayTime = Math.exp(-dt * 1.3);
+        const k = 1 / 22;   // número de onda
+        const omega = 7.5;  // frecuencia
+        const decaySpace = Math.exp(-r / 160);
+        const decayTime = Math.exp(-dt * 1.2);
 
         const phase = k * r - omega * dt;
         const localAmp = Math.sin(phase) * decaySpace * decayTime;
@@ -122,26 +123,26 @@ document.addEventListener("DOMContentLoaded", function () {
         amp += localAmp;
       }
 
-      // Limitar amplitud total
+      // Limitar amplitud
       if (amp > 1) amp = 1;
       if (amp < -1) amp = -1;
 
-      const shiftY = amp * 10;                        // desplazamiento vertical
-      const radius = 5 + 4 * Math.abs(amp);           // tamaño cambia con la amplitud
+      const shiftY = amp * 22;                        // desplazamiento visible
+      const radius = 6 + 8 * Math.abs(amp);           // tamaño visible
 
-      // Color: de gris a verde/azul según amplitud
-      const intensity = Math.floor(120 + 120 * Math.abs(amp));
+      const intensity = Math.floor(150 + 100 * Math.abs(amp));
       const green = intensity;
-      const blue = 200;
-      const color = `rgb(${180 - intensity/3}, ${green}, ${blue})`;
+      const blue = 230;
+      const red = 90;
+      const color = `rgb(${red}, ${green}, ${blue})`;
 
       ctx.beginPath();
       ctx.arc(atom.baseX, atom.baseY + shiftY, radius, 0, Math.PI * 2);
 
-      const glow = 0.35 + 0.35 * Math.abs(amp);
+      const glow = 0.4 + 0.5 * Math.abs(amp);
       ctx.fillStyle = color;
       ctx.shadowColor = `rgba(125, 211, 252, ${glow})`;
-      ctx.shadowBlur = 12 + 18 * Math.abs(amp);
+      ctx.shadowBlur = 18 + 20 * Math.abs(amp);
       ctx.fill();
       ctx.shadowBlur = 0;
     }
