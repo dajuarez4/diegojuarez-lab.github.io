@@ -10,11 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // -------------------------------
   // Parámetros de la red atómica
   // -------------------------------
-  const cols = 14;   // átomos en x
-  const rows = 7;    // átomos en y
+  const cols = 20;   // átomos en x
+  const rows = 10;    // átomos en y
   const atoms = [];
-  const paddingX = 80;
-  const paddingY = 70;
+  const paddingX = 25;
+  const paddingY = 25;
 
   const dx = (width - 2 * paddingX) / (cols - 1);
   const dy = (height - 2 * paddingY) / (rows - 1);
@@ -60,12 +60,12 @@ document.addEventListener("DOMContentLoaded", function () {
     ctx.fillRect(0, 0, width, height);
 
     // Texto guía
-    ctx.save();
-    ctx.fillStyle = "rgba(148, 163, 184, 0.8)";
-    ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif";
-    ctx.textAlign = "center";
-    ctx.fillText("Click anywhere to excite a phonon wave ✨", width / 2, 32);
-    ctx.restore();
+    // ctx.save();
+    // ctx.fillStyle = "rgba(148, 163, 184, 0.8)";
+    // ctx.font = "16px -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif";
+    // ctx.textAlign = "center";
+    // ctx.fillText("Click anywhere to excite a phonon wave ✨", width / 2, 32);
+    // ctx.restore();
 
     // Eliminar ondas viejas
     for (let i = waves.length - 1; i >= 0; i--) {
