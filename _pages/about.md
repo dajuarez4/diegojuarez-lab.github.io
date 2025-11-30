@@ -100,30 +100,32 @@ redirect_from:
 <p style="margin-bottom: 20px;">
 
 
+
+
+<h2 style="text-align:center; margin-top:32px; margin-bottom:12px;">
+  Phonon Ripple Playground 🎛️
+</h2>
+
 <div style="
-  margin-top:32px;
-  background:#ffffff;
+  background: linear-gradient(135deg, #000000 0%, #001a40 100%);
   padding:24px;
   border-radius:18px;
   border:2px solid #004080;
-  box-shadow:0 0 20px rgba(0,64,128,0.1);
+  box-shadow:0 0 20px rgba(0,64,128,0.3);
 ">
-  <h2 style="text-align:center; margin-top:0;"> Phonon Ripple Playground </h2>
-
-  <!-- Canvas con tamaño similar al GIF -->
   <canvas
-    id="gameCanvas"
+    id="phononCanvas"
     width="800"
     height="400"
     style="
       display:block;
       margin:0 auto;
-      width:100%;          
+      width:100%;
       max-width:100%;
-      border:1px solid #ccc;
       border-radius:16px;
+      background:#020617;
     ">
   </canvas>
 </div>
 
-<script src="{{ '/assets/js/game_phonons.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/phonon_ripple.js' | relative_url }}"></script>
