@@ -35,8 +35,8 @@ main:
   # - title: "Presentations & Posters"
   #   url: /talks/
   
-  # - title: "Research Projects"
-  #   url: /portfolio/
+  - title: "Research Projects"
+    url: /portfolio/
     
   - title: "CV"
     url: /cv/
