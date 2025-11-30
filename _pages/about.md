@@ -82,7 +82,7 @@ redirect_from:
     >
 
     <img 
-      src="{{ '/images/fit_eosBM.gif' | relative_url }}" 
+      src="{{ '/images/image70.gif' | relative_url }}" 
       alt="Birch-Murnaghan EOS fit for NiTi with antisite defects" 
       style="
         max-width:100%;
