@@ -108,7 +108,7 @@ redirect_from:
   border:2px solid #004080;
   box-shadow:0 0 20px rgba(0,64,128,0.1);
 ">
-  <h2 style="text-align:center; margin-top:0;">Game 🎮</h2>
+  <h2 style="text-align:center; margin-top:0;"> Phonon Ripple Playground </h2>
 
   <!-- Canvas con tamaño similar al GIF -->
   <canvas
@@ -126,4 +126,4 @@ redirect_from:
   </canvas>
 </div>
 
-<script src="{{ '/assets/js/game.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/game_phonons.js' | relative_url }}"></script>
