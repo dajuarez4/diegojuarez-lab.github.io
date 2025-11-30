@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // -------------------------------
   // Construir supercelda FCC 3x3x3 centrada
   // -------------------------------
-  const nx = 3, ny = 3, nz = 3; // número de celdas
+  const nx = 4, ny = 4, nz = 4; // número de celdas
   const a = 3.0;                // parámetro de red (arbitrario)
   const basis = [
     [0,   0,   0  ],
