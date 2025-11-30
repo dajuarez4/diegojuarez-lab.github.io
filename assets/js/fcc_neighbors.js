@@ -23,6 +23,16 @@ document.addEventListener("DOMContentLoaded", function () {
     [0.5, 0.5, 0  ]
   ];
 
+  // distancias analíticas de los 5 primeros vecinos FCC
+  const a_val = a;
+  const nn_dists = [
+    a_val / Math.sqrt(2),             // 1st NN
+    a_val,                            // 2nd NN
+    Math.sqrt(6) * a_val / 2,         // 3rd NN
+    Math.sqrt(2) * a_val,             // 4th NN
+    Math.sqrt(10) * a_val / 2         // 5th NN
+  ];
+
   const atoms = [];
 
   for (let k = 0; k < nz; k++) {
@@ -50,40 +60,95 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   origin.isOrigin = true;
 
-  // -------------------------------
-  // Distancias al origen y shells FCC
-  // -------------------------------
-  const distancesRaw = [];
+      
+  // // -------------------------------
+  // // Distancias al origen y shells FCC
+  // // -------------------------------
+  // const distancesRaw = [];
 
+  // for (const atom of atoms) {
+  //   if (atom === origin) {
+  //     atom.distance = 0;
+  //     atom.shell = 0;
+  //     continue;
+  //   }
+  //   const dx = atom.x - origin.x;
+  //   const dy = atom.y - origin.y;
+  //   const dz = atom.z - origin.z;
+  //   const r = Math.sqrt(dx * dx + dy * dy + dz * dz);
+  //   atom.distance = r;
+  //   distancesRaw.push(r);
+  // }
+
+  // const unique = [...new Set(distancesRaw.map(v => +v.toFixed(3)))]
+  //   .sort((a, b) => a - b);
+
+  // const firstShellDist = unique[0]; // d ~ a/sqrt(2)
+
+  // for (const atom of atoms) {
+  //   if (atom === origin) continue;
+  //   const key = +atom.distance.toFixed(3);
+  //   atom.shell = unique.indexOf(key) + 1; // 1er NN, 2do NN, etc.
+  // }
+
+  // -------------------------------
+  // Distancias al origen y shells FCC (analítico)
+  // -------------------------------
   for (const atom of atoms) {
     if (atom === origin) {
       atom.distance = 0;
       atom.shell = 0;
       continue;
     }
+  
     const dx = atom.x - origin.x;
     const dy = atom.y - origin.y;
     const dz = atom.z - origin.z;
     const r = Math.sqrt(dx * dx + dy * dy + dz * dz);
     atom.distance = r;
-    distancesRaw.push(r);
+  
+    // Clasificar en shell 1–5 usando las fórmulas FCC
+    let shell = 0;
+    const tol = 0.05; // tolerancia numérica
+  
+    for (let s = 0; s < nn_dists.length; s++) {
+      if (Math.abs(r - nn_dists[s]) < tol) {
+        shell = s + 1; // shells 1,2,3,4,5
+        break;
+      }
+    }
+  
+    atom.shell = shell; // 0 = más allá del 5º vecino
   }
 
-  const unique = [...new Set(distancesRaw.map(v => +v.toFixed(3)))]
-    .sort((a, b) => a - b);
 
-  const firstShellDist = unique[0]; // d ~ a/sqrt(2)
-
-  for (const atom of atoms) {
-    if (atom === origin) continue;
-    const key = +atom.distance.toFixed(3);
-    atom.shell = unique.indexOf(key) + 1; // 1er NN, 2do NN, etc.
-  }
+  
+  
+  // // -------------------------------
+  // // Enlaces (solo 1st NN) precomputados
+  // // -------------------------------
+  // const bonds = [];
+  // for (let i = 0; i < atoms.length; i++) {
+  //   for (let j = i + 1; j < atoms.length; j++) {
+  //     const ai = atoms[i];
+  //     const aj = atoms[j];
+  //     const dx = ai.x - aj.x;
+  //     const dy = ai.y - aj.y;
+  //     const dz = ai.z - aj.z;
+  //     const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+  //     if (Math.abs(d - firstShellDist) < 0.01) {
+  //       bonds.push({ left: ai, right: aj });
+  //     }
+  //   }
+  // }
 
   // -------------------------------
   // Enlaces (solo 1st NN) precomputados
   // -------------------------------
   const bonds = [];
+  const firstShellDist = nn_dists[0];
+  const bondTol = 0.05;
+  
   for (let i = 0; i < atoms.length; i++) {
     for (let j = i + 1; j < atoms.length; j++) {
       const ai = atoms[i];
@@ -92,12 +157,16 @@ document.addEventListener("DOMContentLoaded", function () {
       const dy = ai.y - aj.y;
       const dz = ai.z - aj.z;
       const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
-      if (Math.abs(d - firstShellDist) < 0.01) {
+      if (Math.abs(d - firstShellDist) < bondTol) {
         bonds.push({ left: ai, right: aj });
       }
     }
   }
 
+
+  
+
+  
   // -------------------------------
   // Interacción: rotación y hover
   // -------------------------------
@@ -335,9 +404,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // }
 
     // Auto-rotación muy suave cuando no arrastras
-    if (!isDragging) {
-      angleY += 0.0025;
-    }
+    // if (!isDragging) {
+    //   angleY += 0.0025;
+    // }
 
     requestAnimationFrame(updateAndDraw);
   }
