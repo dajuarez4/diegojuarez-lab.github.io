@@ -179,6 +179,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const minZoom = 0.6;
   const maxZoom = 2.5;
 
+
+  // nuevas variables para distinguir click vs drag real
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let dragStarted = false;
+  const DRAG_THRESHOLD = 4;   // píxeles mínimos para considerar que estás "rotando"
+
+    
   let mouseX = null;
   let mouseY = null;
   let hoverAtom = null;
@@ -186,16 +194,25 @@ document.addEventListener("DOMContentLoaded", function () {
   const defaultMsg =
     "Move your mouse over atoms and drag to rotate the FCC cluster (yellow = origin).";
 
+  // canvas.addEventListener("mousedown", function (evt) {
+  //   isDragging = true;
+  //   lastDragX = evt.clientX;
+  //   lastDragY = evt.clientY;
+  // });
+  
   canvas.addEventListener("mousedown", function (evt) {
     isDragging = true;
-    lastDragX = evt.clientX;
-    lastDragY = evt.clientY;
+    dragStarted = false;      // todavía no contamos que sea drag
+    dragStartX = evt.clientX; // punto donde empezó el clic
+    dragStartY = evt.clientY;
   });
 
+
   window.addEventListener("mouseup", function () {
-    is
-      Dragging = false;
-  });
+      isDragging = false;
+      dragStarted = false;
+    });
+  
   canvas.addEventListener("wheel", function (evt) {
     evt.preventDefault(); // para que no haga scroll la página
   
@@ -206,32 +223,79 @@ document.addEventListener("DOMContentLoaded", function () {
     if (zoom > maxZoom) zoom = maxZoom;
   }, { passive: false });
 
+
+
+
+  
+
   canvas.addEventListener("mouseleave", function () {
     mouseX = mouseY = null;
     hoverAtom = null;
+    isDragging = false;
+    dragStarted = false;
     setInfo(defaultMsg);
   });
+
+
+  
+  
+  // canvas.addEventListener("mousemove", function (evt) {
+  //   const rect = canvas.getBoundingClientRect();
+  //   mouseX = evt.clientX - rect.left;
+  //   mouseY = evt.clientY - rect.top;
+
+  //   if (isDragging) {
+  //     const dx = evt.clientX - lastDragX;
+  //     const dy = evt.clientY - lastDragY;
+  //     angleY += dx * 0.01;
+  //     angleX += dy * 0.01;
+
+  //     const maxTilt = Math.PI / 2.5;
+  //     if (angleX > maxTilt) angleX = maxTilt;
+  //     if (angleX < -maxTilt) angleX = -maxTilt;
+
+  //     lastDragX = evt.clientX;
+  //     lastDragY = evt.clientY;
+  //   }
+  // });
 
   canvas.addEventListener("mousemove", function (evt) {
     const rect = canvas.getBoundingClientRect();
     mouseX = evt.clientX - rect.left;
     mouseY = evt.clientY - rect.top;
-
-    if (isDragging) {
-      const dx = evt.clientX - lastDragX;
-      const dy = evt.clientY - lastDragY;
-      angleY += dx * 0.01;
-      angleX += dy * 0.01;
-
-      const maxTilt = Math.PI / 2.5;
-      if (angleX > maxTilt) angleX = maxTilt;
-      if (angleX < -maxTilt) angleX = -maxTilt;
-
+  
+    if (!isDragging) return;
+  
+    // Distancia total desde donde empezó el clic
+    const dxTotal = evt.clientX - dragStartX;
+    const dyTotal = evt.clientY - dragStartY;
+  
+    // Si todavía no hemos declarado "drag" y el movimiento es muy pequeño, no rotamos
+    if (!dragStarted) {
+      if (Math.abs(dxTotal) + Math.abs(dyTotal) < DRAG_THRESHOLD) {
+        return;  // tratarlo como simple clic por ahora
+      }
+      // A partir de aquí sí consideramos que es un drag real
+      dragStarted = true;
       lastDragX = evt.clientX;
       lastDragY = evt.clientY;
     }
+  
+    // Rotación real solo cuando ya se pasó el umbral
+    const dx = evt.clientX - lastDragX;
+    const dy = evt.clientY - lastDragY;
+    angleY += dx * 0.01;
+    angleX += dy * 0.01;
+  
+    const maxTilt = Math.PI / 2.5;
+    if (angleX > maxTilt) angleX = maxTilt;
+    if (angleX < -maxTilt) angleX = -maxTilt;
+  
+    lastDragX = evt.clientX;
+    lastDragY = evt.clientY;
   });
 
+  
   function ordinal(n) {
     const suffixes = ["th", "st", "nd", "rd"];
     const v = n % 100;
