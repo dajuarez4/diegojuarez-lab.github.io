@@ -106,6 +106,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let isDragging = false;
   let lastDragX = 0;
   let lastDragY = 0;
+  let zoom = 1.0;
+  const minZoom = 0.6;
+  const maxZoom = 2.5;
 
   let mouseX = null;
   let mouseY = null;
@@ -121,8 +124,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   window.addEventListener("mouseup", function () {
-    isDragging = false;
+    is
+      Dragging = false;
   });
+  canvas.addEventListener("wheel", function (evt) {
+    evt.preventDefault(); // para que no haga scroll la página
+  
+    const zoomFactor = evt.deltaY < 0 ? 1.05 : 0.95; // arriba = zoom in, abajo = zoom out
+    zoom *= zoomFactor;
+  
+    if (zoom < minZoom) zoom = minZoom;
+    if (zoom > maxZoom) zoom = maxZoom;
+  }, { passive: false });
 
   canvas.addEventListener("mouseleave", function () {
     mouseX = mouseY = null;
@@ -177,8 +190,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const cosx = Math.cos(angleX);
     const sinx = Math.sin(angleX);
 
-    const scale = 200;
+    // const scale = 200;
+    // const zOffset = 3;
+    const baseScale = 200;
+    const scale = baseScale * zoom; // escala depende del zoom
     const zOffset = 3;
+
 
     // Actualizar coords proyectadas
     for (const atom of atoms) {
