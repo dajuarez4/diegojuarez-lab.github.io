@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Construir supercelda FCC 3x3x3 centrada
   // -------------------------------
   const nx = 3, ny = 3, nz = 3; // número de celdas
-  const a = 3.0;                // parámetro de red (arbitrario)
+  const a = 1.0;                // parámetro de red (arbitrario)
   const basis = [
     [0,   0,   0  ],
     [0,   0.5, 0.5],
@@ -146,8 +146,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Enlaces (solo 1st NN) precomputados
   // -------------------------------
   const bonds = [];
-  const firstShellDist = nn_dists[0];
-  const bondTol = 0.05;
+  const firstShellDist = nn_dists[1];
+  const bondTol = 0.0001;
   
   for (let i = 0; i < atoms.length; i++) {
     for (let j = i + 1; j < atoms.length; j++) {
@@ -170,8 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // -------------------------------
   // Interacción: rotación y hover
   // -------------------------------
-  let angleY = 0.6;       // rotación inicial alrededor de Y
-  let angleX = -0.4;      // inclinación inicial
+  let angleY = 0.0;       // rotación inicial alrededor de Y 0.6
+  let angleX = 00.0;      // inclinación inicial -0.4
   let isDragging = false;
   let lastDragX = 0;
   let lastDragY = 0;
@@ -369,6 +369,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Info
+
     if (!hoverAtom) {
       setInfo(defaultMsg);
     } else if (hoverAtom.isOrigin) {
@@ -376,11 +377,33 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       const shell = hoverAtom.shell;
       const d = hoverAtom.distance.toFixed(2);
-      setInfo(
-        `This atom is in shell ${shell} (${ordinal(shell)}-nearest neighbor), distance ≈ ${d} a.`
-      );
+    
+      if (shell === 0) {
+        setInfo(
+          `This atom is beyond the 5th-nearest neighbor shell (distance ≈ ${d} a).`
+        );
+      } else {
+        setInfo(
+          `This atom corresponds to the ${ordinal(shell)}-nearest neighbor with distance ≈ ${d} a.`
+        );
+      }
     }
 
+
+    
+    // if (!hoverAtom) {
+    //   setInfo(defaultMsg);
+    // } else if (hoverAtom.isOrigin) {
+    //   setInfo("This is the origin atom (reference site).");
+    // } else {
+    //   const shell = hoverAtom.shell;
+    //   const d = hoverAtom.distance.toFixed(2);
+    //   setInfo(
+    //     `This atom corresponds to the ${ordinal(shell)}-nearest neighbor with distance ≈ ${d} a.`
+    //   );
+    // }
+
+    
     // Dibujar enlaces (1st NN)
     ctx.lineWidth = 1.3;
     ctx.strokeStyle = "rgba(148, 163, 184, 0.55)";
