@@ -370,38 +370,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Info
 
-    // if (!hoverAtom) {
-    //   setInfo(defaultMsg);
-    // } else if (hoverAtom.isOrigin) {
-    //   setInfo("This is the origin atom (reference site).");
-    // } else {
-    //   const shell = hoverAtom.shell;
-    //   const d = hoverAtom.distance.toFixed(2);
-    
-    //   if (shell === 0) {
-    //     setInfo(
-    //       `This atom is beyond the 5th-nearest neighbor shell (distance ≈ ${d} a).`
-    //     );
-    //   } else {
-    //     setInfo(
-    //       `This atom corresponds to the ${ordinal(shell)}-nearest neighbor with distance ≈ ${d} a.`
-    //     );
-    //   }
-    // }
-
-
-    
     if (!hoverAtom) {
       setInfo(defaultMsg);
     } else if (hoverAtom.isOrigin) {
-      setInfo("Origin atom.");
+      setInfo("This is the origin atom (reference site).");
     } else {
       const shell = hoverAtom.shell;
       const d = hoverAtom.distance.toFixed(2);
-      setInfo(
-        `This atom corresponds to the ${ordinal(shell)}-nearest neighbor with distance ≈ ${d} a.`
-      );
+    
+      if (shell === 0) {
+        setInfo(
+          `This atom is beyond the 5th-nearest neighbor shell (distance ≈ ${d} a).`
+        );
+      } else {
+        setInfo(
+          `This atom corresponds to the ${ordinal(shell)}-nearest neighbor with distance ≈ ${d} a.`
+        );
+      }
     }
+
+
+    
+    // if (!hoverAtom) {
+    //   setInfo(defaultMsg);
+    // } else if (hoverAtom.isOrigin) {
+    //   setInfo("Origin atom.");
+    // } else {
+    //   const shell = hoverAtom.shell;
+    //   const d = hoverAtom.distance.toFixed(2);
+    //   setInfo(
+    //     `This atom corresponds to the ${ordinal(shell)}-nearest neighbor with distance ≈ ${d} a.`
+    //   );
+    // }
 
     
     // Dibujar enlaces (1st NN)
