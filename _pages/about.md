@@ -1,5 +1,4 @@
 ---
-layout: home
 permalink: /
 title: "Diego Armando Juarez Rosales"
 author_profile: true
