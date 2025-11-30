@@ -170,8 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // -------------------------------
   // Interacción: rotación y hover
   // -------------------------------
-  let angleY = 0.6;       // rotación inicial alrededor de Y 0.6
-  let angleX = -0.4;      // inclinación inicial -0.4
+  let angleY = 0.0;       // rotación inicial alrededor de Y 0.6
+  let angleX = 0.0;      // inclinación inicial -0.4
   let isDragging = false;
   let lastDragX = 0;
   let lastDragY = 0;
