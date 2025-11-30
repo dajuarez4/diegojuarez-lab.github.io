@@ -103,7 +103,7 @@ redirect_from:
 
 <div id="game-container" style="text-align:center; margin-top:32px;">
   <h2>Game 🎮</h2>
-  <canvas id="gameCanvas" width="100" height="50" style="border:1px solid #ccc;"></canvas>
+  <canvas id="gameCanvas" width="400" height="100" style="border:1px solid #ccc;"></canvas>
 </div>
 
 <script src="{{ '/assets/js/game.js' | relative_url }}"></script>
