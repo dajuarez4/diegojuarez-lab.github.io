@@ -129,3 +129,46 @@ redirect_from:
 </div>
 
 <script src="{{ '/assets/js/phonon_ripple.js' | relative_url }}"></script>
+
+
+
+<p style="margin-bottom: 20px;">
+
+
+
+<h2 style="text-align:center; margin-top:40px; margin-bottom:12px;">
+  FCC Neighbor Explorer 
+</h2>
+
+<div style="
+  background: linear-gradient(135deg, #000000 0%, #001a40 100%);
+  padding:8px;
+  border-radius:18px;
+  border:2px solid #004080;
+  box-shadow:0 0 20px rgba(0,64,128,0.3);
+">
+  <canvas
+    id="fccCanvas"
+    width="800"
+    height="400"
+    style="
+      display:block;
+      margin:0;
+      width:100%;
+      max-width:100%;
+      border-radius:14px;
+      background:#020617;
+    ">
+  </canvas>
+</div>
+
+<p id="fcc-info" style="
+  text-align:center;
+  margin-top:8px;
+  color:#4b5563;
+  font-size:0.95em;
+">
+  Click any atom to see what FCC neighbor shell it belongs to.
+</p>
+
+<script src="{{ '/assets/js/fcc_neighbors.js' | relative_url }}"></script>
