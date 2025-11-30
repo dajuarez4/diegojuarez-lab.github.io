@@ -18,9 +18,9 @@ description              : &description "Physics and computational science stude
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 #baseurl                  : "" # the subpath of your site, e.g. "/blog"
 #repository               : "academicpages/academicpages.github.io"
-url          : "https://dajuarez5.github.io"
+url          : "https://dajuarez4.github.io"
 baseurl      : "/diegojuarez-lab.github.io"           # your repo name (with leading /)
-repository   : "dajuarez5/diegojuarez-lab.github.io"  # owner/repo
+repository   : "dajuarez4/diegojuarez-lab.github.io"  # owner/repo
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
