@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const canvas = document.getElementById("fccCanvas");
-  if (!canvas) return;
+  if (!canvas) return; 
 
   const ctx = canvas.getContext("2d");
   const width = canvas.width;
@@ -246,24 +246,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // Dibujar átomos (ordenados por profundidad: lejos → cerca)
     atoms.sort((aObj, bObj) => bObj.depth - aObj.depth);
 
+
+
+
     for (const atom of atoms) {
       const isOrigin = atom.isOrigin;
       const isHover = atom === hoverAtom;
-
+    
       const baseR = isOrigin ? 10 : 7;
       const radius = isHover ? baseR + 3 : baseR;
-
+    
+      // Solo el origen tiene color distinto, todos los demás iguales
       let color;
       if (isOrigin) {
-        color = "#facc15"; // amarillo
-      } else if (atom.shell === 1) {
-        color = "#22d3ee"; // 1er NN - cyan
-      } else if (atom.shell === 2) {
-        color = "#60a5fa"; // 2do NN - azul
+        color = "#facc15"; // origen: amarillo
       } else {
-        color = "#9ca3af"; // demás - gris
+        color = "#9ca3af"; // todos los demás: gris (cámbialo si quieres otro)
       }
-
+    
       // anillo suave si está en hover
       if (isHover) {
         ctx.beginPath();
@@ -271,7 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.fillStyle = "rgba(248, 250, 252, 0.25)";
         ctx.fill();
       }
-
+    
       ctx.beginPath();
       ctx.arc(atom.screenX, atom.screenY, radius, 0, Math.PI * 2);
       ctx.fillStyle = color;
@@ -280,6 +280,42 @@ document.addEventListener("DOMContentLoaded", function () {
       ctx.fill();
       ctx.shadowBlur = 0;
     }
+
+    
+    // for (const atom of atoms) {
+    //   const isOrigin = atom.isOrigin;
+    //   const isHover = atom === hoverAtom;
+
+    //   const baseR = isOrigin ? 10 : 7;
+    //   const radius = isHover ? baseR + 3 : baseR;
+
+    //   let color;
+    //   if (isOrigin) {
+    //     color = "#facc15"; // amarillo
+    //   } else if (atom.shell === 1) {
+    //     color = "#22d3ee"; // 1er NN - cyan
+    //   } else if (atom.shell === 2) {
+    //     color = "#60a5fa"; // 2do NN - azul
+    //   } else {
+    //     color = "#9ca3af"; // demás - gris
+    //   }
+
+    //   // anillo suave si está en hover
+    //   if (isHover) {
+    //     ctx.beginPath();
+    //     ctx.arc(atom.screenX, atom.screenY, radius + 4, 0, Math.PI * 2);
+    //     ctx.fillStyle = "rgba(248, 250, 252, 0.25)";
+    //     ctx.fill();
+    //   }
+
+    //   ctx.beginPath();
+    //   ctx.arc(atom.screenX, atom.screenY, radius, 0, Math.PI * 2);
+    //   ctx.fillStyle = color;
+    //   ctx.shadowColor = "rgba(148, 163, 184, 0.7)";
+    //   ctx.shadowBlur = isOrigin || isHover ? 18 : 10;
+    //   ctx.fill();
+    //   ctx.shadowBlur = 0;
+    // }
 
     // Auto-rotación muy suave cuando no arrastras
     if (!isDragging) {
