@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // -------------------------------
   const bonds = [];
   const firstShellDist = nn_dists[1];
-  const bondTol = 0.0001;
+  const bondTol = 0.001;
   
   for (let i = 0; i < atoms.length; i++) {
     for (let j = i + 1; j < atoms.length; j++) {
@@ -170,8 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // -------------------------------
   // Interacción: rotación y hover
   // -------------------------------
-  let angleY = 0.0;       // rotación inicial alrededor de Y 0.6
-  let angleX = 00.0;      // inclinación inicial -0.4
+  let angleY = 0.6;       // rotación inicial alrededor de Y 0.6
+  let angleX = -0.4;      // inclinación inicial -0.4
   let isDragging = false;
   let lastDragX = 0;
   let lastDragY = 0;
