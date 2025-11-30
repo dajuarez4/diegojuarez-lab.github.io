@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // -------------------------------
-  // Construir supercelda FCC 3x3x3
+  // Construir supercelda FCC 3x3x3 centrada
   // -------------------------------
   const nx = 3, ny = 3, nz = 3; // número de celdas
   const a = 1.0;                // parámetro de red (arbitrario)
@@ -29,36 +29,29 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let j = 0; j < ny; j++) {
       for (let i = 0; i < nx; i++) {
         for (const b of basis) {
-          const x = (i + b[0]) * a;
-          const y = (j + b[1]) * a;
-          const z = (k + b[2]) * a;
+          const x = (i - (nx - 1) / 2 + b[0]) * a;
+          const y = (j - (ny - 1) / 2 + b[1]) * a;
+          const z = (k - (nz - 1) / 2 + b[2]) * a;
           atoms.push({ x, y, z });
         }
       }
     }
   }
 
-  // Elegir átomo origen: el más cercano al centro geométrico
-  const cx = (nx * a) / 2;
-  const cy = (ny * a) / 2;
-  const cz = (nz * a) / 2;
-
+  // Elegir átomo origen: el más cercano al centro (0,0,0)
   let origin = null;
-  let bestDist = Infinity;
+  let bestDist2 = Infinity;
   for (const atom of atoms) {
-    const dx = atom.x - cx;
-    const dy = atom.y - cy;
-    const dz = atom.z - cz;
-    const d2 = dx * dx + dy * dy + dz * dz;
-    if (d2 < bestDist) {
-      bestDist = d2;
+    const d2 = atom.x * atom.x + atom.y * atom.y + atom.z * atom.z;
+    if (d2 < bestDist2) {
+      bestDist2 = d2;
       origin = atom;
     }
   }
   origin.isOrigin = true;
 
   // -------------------------------
-  // Calcular distancias y shells FCC
+  // Distancias al origen y shells FCC
   // -------------------------------
   const distancesRaw = [];
 
@@ -76,46 +69,86 @@ document.addEventListener("DOMContentLoaded", function () {
     distancesRaw.push(r);
   }
 
-  // Agrupar distancias únicas (1er NN, 2do NN, etc.)
   const unique = [...new Set(distancesRaw.map(v => +v.toFixed(3)))]
     .sort((a, b) => a - b);
+
+  const firstShellDist = unique[0]; // d ~ a/sqrt(2)
 
   for (const atom of atoms) {
     if (atom === origin) continue;
     const key = +atom.distance.toFixed(3);
-    atom.shell = unique.indexOf(key) + 1; // shell 1, 2, 3...
+    atom.shell = unique.indexOf(key) + 1; // 1er NN, 2do NN, etc.
   }
 
   // -------------------------------
-  // Proyección pseudo-3D (isométrica)
+  // Enlaces (solo 1st NN) precomputados
   // -------------------------------
-  function projectAtom(atom) {
-    const s = 70;   // escala
-    // proyección simple tipo isométrica
-    const isoX = (atom.x - atom.z) * s;
-    const isoY = (atom.x + atom.z) * s * 0.35 - atom.y * s;
-
-    atom.screenX = width / 2 + isoX;
-    atom.screenY = height / 2 + isoY;
+  const bonds = [];
+  for (let i = 0; i < atoms.length; i++) {
+    for (let j = i + 1; j < atoms.length; j++) {
+      const ai = atoms[i];
+      const aj = atoms[j];
+      const dx = ai.x - aj.x;
+      const dy = ai.y - aj.y;
+      const dz = ai.z - aj.z;
+      const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+      if (Math.abs(d - firstShellDist) < 0.01) {
+        bonds.push({ left: ai, right: aj });
+      }
+    }
   }
 
-  atoms.forEach(projectAtom);
-
-  // Orden de dibujo: de atrás hacia adelante (por z)
-  atoms.sort((a, b) => a.z - b.z);
-
   // -------------------------------
-  // Colores por shell
+  // Interacción: rotación y hover
   // -------------------------------
-  const shellColors = {
-    1: "#f97316", // 1st NN - orange
-    2: "#22c55e", // 2nd NN - green
-    3: "#38bdf8", // 3rd NN - cyan
-    4: "#a855f7", // 4th NN - purple
-    5: "#eab308"  // etc...
-  };
+  let angleY = 0.6;       // rotación inicial alrededor de Y
+  let angleX = -0.4;      // inclinación inicial
+  let isDragging = false;
+  let lastDragX = 0;
+  let lastDragY = 0;
 
-  let selectedAtom = null;
+  let mouseX = null;
+  let mouseY = null;
+  let hoverAtom = null;
+
+  const defaultMsg =
+    "Move your mouse over atoms and drag to rotate the FCC cluster (yellow = origin).";
+
+  canvas.addEventListener("mousedown", function (evt) {
+    isDragging = true;
+    lastDragX = evt.clientX;
+    lastDragY = evt.clientY;
+  });
+
+  window.addEventListener("mouseup", function () {
+    isDragging = false;
+  });
+
+  canvas.addEventListener("mouseleave", function () {
+    mouseX = mouseY = null;
+    hoverAtom = null;
+    setInfo(defaultMsg);
+  });
+
+  canvas.addEventListener("mousemove", function (evt) {
+    const rect = canvas.getBoundingClientRect();
+    mouseX = evt.clientX - rect.left;
+    mouseY = evt.clientY - rect.top;
+
+    if (isDragging) {
+      const dx = evt.clientX - lastDragX;
+      const dy = evt.clientY - lastDragY;
+      angleY += dx * 0.01;
+      angleX += dy * 0.01;
+
+      const maxTilt = Math.PI / 2.5;
+      if (angleX > maxTilt) angleX = maxTilt;
+      if (angleX < -maxTilt) angleX = -maxTilt;
+
+      lastDragX = evt.clientX;
+      lastDragY = evt.clientY;
+    }
+  });
 
   function ordinal(n) {
     const suffixes = ["th", "st", "nd", "rd"];
@@ -125,9 +158,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // -------------------------------
-  // Dibujo
+  // Bucle de dibujo (rotación + hover)
   // -------------------------------
-  function draw() {
+  function updateAndDraw() {
     // Fondo
     const grad = ctx.createRadialGradient(
       width / 2, height / 2, 10,
@@ -138,97 +171,124 @@ document.addEventListener("DOMContentLoaded", function () {
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, width, height);
 
-    // Enlaces (simple: unir átomos cercanos al origen visualmente)
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = "rgba(148, 163, 184, 0.25)";
-    for (const a of atoms) {
-      for (const b of atoms) {
-        if (a === b) continue;
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
-        const dz = a.z - b.z;
-        const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
-        if (d < 0.75 * a) { // umbral para vecinos próximos
-          ctx.beginPath();
-          ctx.moveTo(a.screenX, a.screenY);
-          ctx.lineTo(b.screenX, b.screenY);
-          ctx.stroke();
+    // Rotación 3D
+    const cosy = Math.cos(angleY);
+    const siny = Math.sin(angleY);
+    const cosx = Math.cos(angleX);
+    const sinx = Math.sin(angleX);
+
+    const scale = 120;
+    const zOffset = 5;
+
+    // Actualizar coords proyectadas
+    for (const atom of atoms) {
+      const x0 = atom.x;
+      const y0 = atom.y;
+      const z0 = atom.z;
+
+      // Rotación Y
+      const x1 = x0 * cosy + z0 * siny;
+      const z1 = -x0 * siny + z0 * cosy;
+
+      // Rotación X
+      const y1 = y0 * cosx - z1 * sinx;
+      const z2 = y0 * sinx + z1 * cosx;
+
+      const zCam = z2 + zOffset;
+      const factor = scale / zCam;
+
+      atom.screenX = width / 2 + x1 * factor;
+      atom.screenY = height / 2 - y1 * factor;
+      atom.depth = zCam;
+    }
+
+    // Determinar átomo bajo el mouse (hover)
+    hoverAtom = null;
+    if (mouseX !== null && mouseY !== null) {
+      let bestR2 = Infinity;
+      for (const atom of atoms) {
+        const dx = mouseX - atom.screenX;
+        const dy = mouseY - atom.screenY;
+        const r2 = dx * dx + dy * dy;
+        const pickR = atom.isOrigin ? 14 : 11;
+        if (r2 <= pickR * pickR && r2 < bestR2) {
+          bestR2 = r2;
+          hoverAtom = atom;
         }
       }
     }
 
-    // Átomos
+    // Info
+    if (!hoverAtom) {
+      setInfo(defaultMsg);
+    } else if (hoverAtom.isOrigin) {
+      setInfo("This is the origin atom (reference site).");
+    } else {
+      const shell = hoverAtom.shell;
+      const d = hoverAtom.distance.toFixed(2);
+      setInfo(
+        `This atom is in shell ${shell} (${ordinal(shell)}-nearest neighbor), distance ≈ ${d} a.`
+      );
+    }
+
+    // Dibujar enlaces (1st NN)
+    ctx.lineWidth = 1.3;
+    ctx.strokeStyle = "rgba(148, 163, 184, 0.55)";
+    ctx.beginPath();
+    for (const bond of bonds) {
+      const aL = bond.left;
+      const aR = bond.right;
+      ctx.moveTo(aL.screenX, aL.screenY);
+      ctx.lineTo(aR.screenX, aR.screenY);
+    }
+    ctx.stroke();
+
+    // Dibujar átomos (ordenados por profundidad: lejos → cerca)
+    atoms.sort((aObj, bObj) => bObj.depth - aObj.depth);
+
     for (const atom of atoms) {
       const isOrigin = atom.isOrigin;
-      const isSelected = atom === selectedAtom;
+      const isHover = atom === hoverAtom;
 
-      const baseRadius = isOrigin ? 10 : 7;
-      const radius = isSelected ? baseRadius + 2 : baseRadius;
+      const baseR = isOrigin ? 10 : 7;
+      const radius = isHover ? baseR + 3 : baseR;
 
       let color;
       if (isOrigin) {
         color = "#facc15"; // amarillo
+      } else if (atom.shell === 1) {
+        color = "#22d3ee"; // 1er NN - cyan
+      } else if (atom.shell === 2) {
+        color = "#60a5fa"; // 2do NN - azul
       } else {
-        color = shellColors[atom.shell] || "#9ca3af";
+        color = "#9ca3af"; // demás - gris
       }
 
-      // halo si está seleccionado
-      if (isSelected) {
+      // anillo suave si está en hover
+      if (isHover) {
         ctx.beginPath();
         ctx.arc(atom.screenX, atom.screenY, radius + 4, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(248, 250, 252, 0.3)";
+        ctx.fillStyle = "rgba(248, 250, 252, 0.25)";
         ctx.fill();
       }
 
       ctx.beginPath();
       ctx.arc(atom.screenX, atom.screenY, radius, 0, Math.PI * 2);
       ctx.fillStyle = color;
-      ctx.shadowColor = "rgba(148, 163, 184, 0.6)";
-      ctx.shadowBlur = isOrigin ? 18 : 10;
+      ctx.shadowColor = "rgba(148, 163, 184, 0.7)";
+      ctx.shadowBlur = isOrigin || isHover ? 18 : 10;
       ctx.fill();
       ctx.shadowBlur = 0;
     }
+
+    // Auto-rotación muy suave cuando no arrastras
+    if (!isDragging) {
+      angleY += 0.0025;
+    }
+
+    requestAnimationFrame(updateAndDraw);
   }
 
-  draw();
-  setInfo("Click any atom to see its FCC neighbor shell relative to the yellow origin atom.");
-
-  // -------------------------------
-  // Selección con el mouse
-  // -------------------------------
-  canvas.addEventListener("mousedown", (evt) => {
-    const rect = canvas.getBoundingClientRect();
-    const mx = evt.clientX - rect.left;
-    const my = evt.clientY - rect.top;
-
-    let hit = null;
-
-    // recorrer al revés para dar prioridad a los que están "sobre" otros
-    for (let i = atoms.length - 1; i >= 0; i--) {
-      const atom = atoms[i];
-      const dx = mx - atom.screenX;
-      const dy = my - atom.screenY;
-      const r = Math.sqrt(dx * dx + dy * dy);
-      const pickRadius = atom.isOrigin ? 12 : 9;
-      if (r <= pickRadius) {
-        hit = atom;
-        break;
-      }
-    }
-
-    selectedAtom = hit;
-    if (!hit) {
-      setInfo("Click an atom close to the center of the cluster.");
-    } else if (hit.isOrigin) {
-      setInfo("This is the origin atom (reference site).");
-    } else {
-      const shell = hit.shell;
-      const d = hit.distance.toFixed(2);
-      setInfo(
-        `This atom is in shell ${shell} (${ordinal(shell)}-nearest neighbor), distance ≈ ${d} a.`
-      );
-    }
-
-    draw();
-  });
+  setInfo(defaultMsg);
+  requestAnimationFrame(updateAndDraw);
 });
