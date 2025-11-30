@@ -127,7 +127,7 @@ redirect_from:
     >
 
     <img 
-      src="{{ '/images/images95.gif' | relative_url }}" 
+      src="{{ '/images/image95.gif' | relative_url }}" 
       alt="Second GIF description" 
       style="
         max-width:100%;
