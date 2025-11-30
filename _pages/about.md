@@ -100,11 +100,30 @@ redirect_from:
 <p style="margin-bottom: 20px;">
 
 
+<div style="
+  margin-top:32px;
+  background:#ffffff;
+  padding:24px;
+  border-radius:18px;
+  border:2px solid #004080;
+  box-shadow:0 0 20px rgba(0,64,128,0.1);
+">
+  <h2 style="text-align:center; margin-top:0;">Game 🎮</h2>
 
-<div id="game-container" style="text-align:center; margin-top:32px;">
-  <h2>Game 🎮</h2>
-  <canvas id="gameCanvas" width="400" height="100" style="border:1px solid #ccc;"></canvas>
+  <!-- Canvas con tamaño similar al GIF -->
+  <canvas
+    id="gameCanvas"
+    width="800"
+    height="400"
+    style="
+      display:block;
+      margin:0 auto;
+      width:100%;          
+      max-width:100%;
+      border:1px solid #ccc;
+      border-radius:16px;
+    ">
+  </canvas>
 </div>
 
 <script src="{{ '/assets/js/game.js' | relative_url }}"></script>
-
