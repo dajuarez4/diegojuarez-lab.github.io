@@ -176,8 +176,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let lastDragX = 0;
   let lastDragY = 0;
   let zoom = 1.0;
-  const minZoom = 0.6;
-  const maxZoom = 2.5;
+  const minZoom = 0.3;
+  const maxZoom = 3;
 
 
   // nuevas variables para distinguir click vs drag real
