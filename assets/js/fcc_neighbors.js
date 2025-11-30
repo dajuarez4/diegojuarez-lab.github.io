@@ -177,8 +177,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const cosx = Math.cos(angleX);
     const sinx = Math.sin(angleX);
 
-    const scale = 120;
-    const zOffset = 5;
+    const scale = 200;
+    const zOffset = 3;
 
     // Actualizar coords proyectadas
     for (const atom of atoms) {
