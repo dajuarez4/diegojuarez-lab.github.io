@@ -116,7 +116,7 @@ redirect_from:
   <canvas
     id="phononCanvas"
     width="800"
-    height="400"
+    height="700"
     style="
       display:block;
       margin:0;                
@@ -150,7 +150,7 @@ redirect_from:
   <canvas
     id="fccCanvas"
     width="800"
-    height="400"
+    height="700"
     style="
       display:block;
       margin:0;
