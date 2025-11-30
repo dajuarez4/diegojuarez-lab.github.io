@@ -53,6 +53,7 @@ redirect_from:
 
 <p style="margin-bottom: 20px;">
 
+
 <div style="
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -63,27 +64,13 @@ redirect_from:
   border-radius: 18px;
   border: 2px solid #004080;
   box-shadow: 0 0 20px rgba(0, 64, 128, 0.3);
+  margin-bottom: 28px;
 ">
-  <!-- Images (left side) -->
+  <!-- Image (left side) -->
   <div style="text-align:center;">
     <img 
       src="{{ '/images/phon_disp_GaAs.gif' | relative_url }}" 
       alt="Phonon dispersion animation for 2D GaAs" 
-      style="
-        max-width:100%;
-        border-radius:16px;
-        box-shadow:0 0 25px rgba(0,64,128,0.5);
-        transition: transform 0.3s ease;
-        margin-bottom:20px;
-      "
-      onmouseover="this.style.transform='scale(1.03)'"
-      onmouseout="this.style.transform='scale(1)'"
-      loading="lazy"
-    >
-
-    <img 
-      src="{{ '/images/image70.gif' | relative_url }}" 
-      alt="Birch-Murnaghan EOS fit for NiTi with antisite defects" 
       style="
         max-width:100%;
         border-radius:16px;
@@ -101,19 +88,77 @@ redirect_from:
     <h2 style="color:#FFFFFF; font-size:1.8em; font-weight:700; margin-top:0; margin-bottom:12px; letter-spacing:0.5px;">
       ⚛️ Science in Motion
     </h2>
-    <p style="color:#E0E0E0; font-size:1.05em; line-height:1.6; margin:0 0 10px 0;">
-      Explore my research on lattice vibrations and nanoscale behavior. On the left, you can see a visualization of the 
-      <b>phonon dispersion in 2D GaAs</b>.
-    </p>
     <p style="color:#E0E0E0; font-size:1.05em; line-height:1.6; margin:0;">
-      Below it, you can find another result from my work: a GIF showing the <b>Birch–Murnaghan equation-of-state fit for NiTi with antisite defects</b>, highlighting how its mechanical response evolves with volume.
+      Explore my research on lattice vibrations and nanoscale behavior. Here you can see a visualization of the  <b>phonon dispersion in 2D GaAs</b>.
+    </p>
+  </div>
+</div>
+
+
+<p style="margin-bottom: 20px;">
+
+
+<div style="
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  align-items: center;
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+">
+  <!-- Images (left side) -->
+  <div style="text-align:center;">
+    <img 
+      src="{{ '/images/image70.gif' | relative_url }}" 
+      alt="Birch-Murnaghan EOS fit for NiTi with antisite defects" 
+      style="
+        max-width:100%;
+        border-radius:16px;
+        box-shadow:0 0 18px rgba(15,23,42,0.15);
+        transition: transform 0.3s ease;
+        margin-bottom:18px;
+      "
+      onmouseover="this.style.transform='scale(1.03)'"
+      onmouseout="this.style.transform='scale(1)'"
+      loading="lazy"
+    >
+
+    <img 
+      src="{{ '/images/images95.gif' | relative_url }}" 
+      alt="Second GIF description" 
+      style="
+        max-width:100%;
+        border-radius:16px;
+        box-shadow:0 0 18px rgba(15,23,42,0.15);
+        transition: transform 0.3s ease;
+      "
+      onmouseover="this.style.transform='scale(1.03)'"
+      onmouseout="this.style.transform='scale(1)'"
+      loading="lazy"
+    >
+    
+  </div>
+
+  <!-- Text (right side) -->
+  <div>
+    <h2 style="color:#0f172a; font-size:1.7em; font-weight:700; margin-top:0; margin-bottom:10px;">
+      🧮 Birch–Murnaghan EOS for NiTi with point defects
+    </h2>
+    <p style="color:#334155; font-size:1.05em; line-height:1.6; margin:0;">
+      This GIF showcases another result from my work: the <b>Birch–Murnaghan equation-of-state fit for NiTi with point defects</b>.  
+      It highlights how the alloy’s mechanical response evolves with volume and how point defects modify its equilibrium properties.
     </p>
   </div>
 </div>
 
 
 
+
 <p style="margin-bottom: 20px;">
+
 
 
 
