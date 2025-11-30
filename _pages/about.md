@@ -103,12 +103,12 @@ redirect_from:
 
 
 <h2 style="text-align:center; margin-top:32px; margin-bottom:12px;">
-  Phonon Ripple Playground 🎛️
+  Click anywhere to generate a lattice vibration <b>(phonon)</b>.
 </h2>
 
 <div style="
   background: linear-gradient(135deg, #000000 0%, #001a40 100%);
-  padding:24px;
+  padding:8px;                 
   border-radius:18px;
   border:2px solid #004080;
   box-shadow:0 0 20px rgba(0,64,128,0.3);
@@ -119,10 +119,10 @@ redirect_from:
     height="400"
     style="
       display:block;
-      margin:0 auto;
+      margin:0;                
       width:100%;
       max-width:100%;
-      border-radius:16px;
+      border-radius:14px;
       background:#020617;
     ">
   </canvas>
