@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // -------------------------------
   const bonds = [];
   const firstShellDist = nn_dists[0];
-  const bondTol = 0.001;
+  const bondTol = 0.05;
   
   for (let i = 0; i < atoms.length; i++) {
     for (let j = i + 1; j < atoms.length; j++) {
