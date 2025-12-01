@@ -40,5 +40,6 @@ main:
     
   - title: "CV"
     url: /cv/
-  - title: "Product Projects"
-    url: /publications/
+    
+  # - title: "Product Projects"
+  #   url: /publications/
