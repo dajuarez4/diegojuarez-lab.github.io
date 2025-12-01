@@ -9,46 +9,46 @@ redirect_from:
 
 
 
-<div style="max-width:1000px; margin:0 auto;">
-  <div style="
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap:24px;
-    align-items:center;
-    background:#f5f8ff;
-    padding:24px;
-    border-radius:16px;
-    border:2px solid #004080;
-  ">
-    
-    <div>
-      <h2 style="color:#004080; margin-top:0; font-size:1.8em; font-weight:700; margin-bottom:12px;">
-        👋 Hello everyone!
-      </h2>
-      <p style="color:#222; font-size:1.05em; line-height:1.6; margin:0;">
-        Welcome to my academic portfolio! I’ll be uploading <b>presentations</b>, <b>posters</b>, and <b>future papers</b>.
-        I’ll also share <i>phonon simulations</i> and other visuals from my research journey.
-        I hope this page reflects my passion for science and my goal of becoming a dedicated researcher and scientist.
-      </p>
-    </div>
+
+<div style="
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap:24px;
+  align-items:center;
+  background:#f5f8ff;
+  padding:24px;
+  border-radius:16px;
+  border:2px solid #004080;
+">
   
-    <div style="text-align:center;">
-      <img 
-        src="{{ '/images/phonons.gif' | relative_url }}" 
-        alt="Phonon simulation animation"
-        style="
-          max-width:100%;
-          border-radius:14px;
-          box-shadow:0 0 15px rgba(0,0,0,0.18);
-          transition: transform 0.3s ease;
-        "
-        onmouseover="this.style.transform='scale(1.03)'"
-        onmouseout="this.style.transform='scale(1)'"
-        loading="lazy"
-      >
-    </div>
+  <div>
+    <h2 style="color:#004080; margin-top:0; font-size:1.8em; font-weight:700; margin-bottom:12px;">
+      👋 Hello everyone!
+    </h2>
+    <p style="color:#222; font-size:1.05em; line-height:1.6; margin:0;">
+      Welcome to my academic portfolio! I’ll be uploading <b>presentations</b>, <b>posters</b>, and <b>future papers</b>.
+      I’ll also share <i>phonon simulations</i> and other visuals from my research journey.
+      I hope this page reflects my passion for science and my goal of becoming a dedicated researcher and scientist.
+    </p>
+  </div>
+
+  <div style="text-align:center;">
+    <img 
+      src="{{ '/images/phonons.gif' | relative_url }}" 
+      alt="Phonon simulation animation"
+      style="
+        max-width:100%;
+        border-radius:14px;
+        box-shadow:0 0 15px rgba(0,0,0,0.18);
+        transition: transform 0.3s ease;
+      "
+      onmouseover="this.style.transform='scale(1.03)'"
+      onmouseout="this.style.transform='scale(1)'"
+      loading="lazy"
+    >
   </div>
 </div>
+
 
 
 
@@ -177,7 +177,7 @@ redirect_from:
 ">
   <canvas
     id="phononCanvas"
-    width="1000"
+    width="800"
     height="700"
     style="
       display:block;
@@ -211,7 +211,7 @@ redirect_from:
 ">
   <canvas
     id="fccCanvas"
-    width="1000"
+    width="800"
     height="700"
     style="
       display:block;
