@@ -234,3 +234,33 @@ redirect_from:
 </p>
 
 <script src="{{ '/assets/js/fcc_neighbors.js' | relative_url }}"></script>
+
+
+
+
+<p style="margin-bottom: 20px;">
+
+
+
+<div style="max-width: 900px; margin: 0 auto;">
+  <h3>Interactive NiTi viewer (LAMMPS dump)</h3>
+
+  
+  <input type="file" id="dump-input" accept=".dump,.txt,.dat" />
+
+
+  <div id="atom-viewer" style="width: 100%; height: 500px; margin-top: 10px;"></div>
+</div>
+
+
+<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+
+
+<script src="/assets/js/atom_viewer_upload.js"></script>
+
+<script>
+  
+  createAtomViewerWithUpload("atom-viewer", "dump-input");
+</script>
+
