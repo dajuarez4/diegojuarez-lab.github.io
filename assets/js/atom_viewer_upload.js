@@ -1,5 +1,7 @@
 // atom_viewer_upload.js
 
+console.log("Atom viewer script loaded");
+
 function createAtomViewerWithUpload(containerId, inputId) {
   const container = document.getElementById(containerId);
   const fileInput = document.getElementById(inputId);
@@ -13,15 +15,15 @@ function createAtomViewerWithUpload(containerId, inputId) {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000); // fondo negro
 
-  const width  = container.clientWidth;
-  const height = container.clientHeight;
+  const width  = container.clientWidth || 600;
+  const height = container.clientHeight || 400;
 
   const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 5000);
   camera.position.set(0, 0, 100);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(width, height);
-  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setPixelRatio(window.devicePixelRatio || 1);
   container.appendChild(renderer.domElement);
 
   // --- Luces ---
@@ -37,6 +39,9 @@ function createAtomViewerWithUpload(containerId, inputId) {
   scene.add(dirLight2);
 
   // --- Controles tipo Ovito ---
+  if (!THREE.OrbitControls) {
+    console.error("OrbitControls not found. Check the script URL.");
+  }
   const controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.dampingFactor = 0.1;
@@ -47,8 +52,8 @@ function createAtomViewerWithUpload(containerId, inputId) {
 
   // Resize responsivo
   window.addEventListener("resize", () => {
-    const newWidth  = container.clientWidth;
-    const newHeight = container.clientHeight;
+    const newWidth  = container.clientWidth || width;
+    const newHeight = container.clientHeight || height;
     camera.aspect = newWidth / newHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(newWidth, newHeight);
@@ -61,11 +66,14 @@ function createAtomViewerWithUpload(containerId, inputId) {
     const file = event.target.files[0];
     if (!file) return;
 
+    console.log("Selected file:", file.name);
+
     const reader = new FileReader();
     reader.onload = (e) => {
       const text = e.target.result;
       try {
         const data = parseLAMMPSAuto(text);   // <--- detección automática
+        console.log("Parsed atoms:", data.atoms.length);
         if (atomGroup) {
           scene.remove(atomGroup);
           atomGroup.traverse(obj => {
@@ -77,10 +85,13 @@ function createAtomViewerWithUpload(containerId, inputId) {
         atomGroup = addAtomsToScene(scene, camera, controls, data);
       } catch (err) {
         console.error("Error parsing file:", err);
-        alert("No pude leer el archivo.\n" +
-              "Verifica que sea:\n" +
-              "  • dump de LAMMPS (ITEM: TIMESTEP / ITEM: ATOMS ...), o\n" +
-              "  • data file de LAMMPS con sección 'Atoms'.");
+        alert(
+          "No pude leer el archivo.\n\n" +
+          "Verifica que sea:\n" +
+          "  • un dump de LAMMPS (ITEM: TIMESTEP / ITEM: ATOMS ...),\n" +
+          "  • o un data file de LAMMPS con sección 'Atoms'.\n" +
+          "Revisa la consola (F12 > Console) para más detalles."
+        );
       }
     };
     reader.readAsText(file);
@@ -101,16 +112,19 @@ function createAtomViewerWithUpload(containerId, inputId) {
 // ------------------------------------------------------------------
 function parseLAMMPSAuto(text) {
   if (text.includes("ITEM: TIMESTEP")) {
+    console.log("Detected LAMMPS dump format");
     return parseLAMMPSDump(text);
   }
   if (text.match(/^\s*\d+\s+atoms\b/mi) && text.match(/^\s*Atoms\b/mi)) {
+    console.log("Detected LAMMPS data file format");
     return parseLAMMPSData(text);
   }
   throw new Error("Formato no reconocido como dump ni data file");
 }
 
 // ------------------------------------------------------------------
-// 1) Dump de LAMMPS: ITEM: TIMESTEP, ITEM: ATOMS, etc.
+// 1) Dump de LAMMPS
+//    Soporta x,y,z  o xs,ys,zs  o xu,yu,zu
 // ------------------------------------------------------------------
 function parseLAMMPSDump(text) {
   const lines = text.split(/\r?\n/);
@@ -139,11 +153,23 @@ function parseLAMMPSDump(text) {
 
     const headerParts = lines[++i].trim().split(/\s+/);
     const colNames = headerParts.slice(2);
+    console.log("Dump columns:", colNames);
     const colIndex = {};
     colNames.forEach((name, idx) => { colIndex[name] = idx; });
 
-    if (colIndex["x"] === undefined || colIndex["y"] === undefined || colIndex["z"] === undefined) {
-      throw new Error("Dump file must contain x y z columns");
+    // soportar x/y/z, xs/ys/zs, xu/yu/zu
+    const xKey = colIndex["x"]  !== undefined ? "x"
+                : colIndex["xs"] !== undefined ? "xs"
+                : colIndex["xu"] !== undefined ? "xu" : null;
+    const yKey = colIndex["y"]  !== undefined ? "y"
+                : colIndex["ys"] !== undefined ? "ys"
+                : colIndex["yu"] !== undefined ? "yu" : null;
+    const zKey = colIndex["z"]  !== undefined ? "z"
+                : colIndex["zs"] !== undefined ? "zs"
+                : colIndex["zu"] !== undefined ? "zu" : null;
+
+    if (!xKey || !yKey || !zKey) {
+      throw new Error("Dump file must contain x/y/z or xs/ys/zs or xu/yu/zu");
     }
 
     const atoms = [];
@@ -152,9 +178,9 @@ function parseLAMMPSDump(text) {
       const l = lines[++i].trim();
       if (!l) { a--; continue; }
       const parts = l.split(/\s+/);
-      const x = parseFloat(parts[colIndex["x"]]);
-      const y = parseFloat(parts[colIndex["y"]]);
-      const z = parseFloat(parts[colIndex["z"]]);
+      const x = parseFloat(parts[colIndex[xKey]]);
+      const y = parseFloat(parts[colIndex[yKey]]);
+      const z = parseFloat(parts[colIndex[zKey]]);
       const type = colIndex["type"] !== undefined ? parseInt(parts[colIndex["type"]], 10) : 1;
       atoms.push({ x, y, z, type });
     }
@@ -166,7 +192,7 @@ function parseLAMMPSDump(text) {
 }
 
 // ------------------------------------------------------------------
-// 2) Data file de LAMMPS: encabezado, 'atoms', 'atom types', 'Atoms'
+// 2) Data file de LAMMPS
 // ------------------------------------------------------------------
 function parseLAMMPSData(text) {
   const lines = text.split(/\r?\n/);
@@ -174,15 +200,12 @@ function parseLAMMPSData(text) {
   let natoms = null;
   let bounds = [null, null, null];
 
-  // Buscar número de átomos y box bounds
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
     if (!line) continue;
 
     const mAtoms = line.match(/^(\d+)\s+atoms\b/i);
-    if (mAtoms) {
-      natoms = parseInt(mAtoms[1], 10);
-    }
+    if (mAtoms) natoms = parseInt(mAtoms[1], 10);
 
     if (line.toLowerCase().includes("xlo xhi")) {
       const parts = line.split(/\s+/);
@@ -198,11 +221,8 @@ function parseLAMMPSData(text) {
     }
   }
 
-  if (natoms === null) {
-    throw new Error("No encontré la línea 'N atoms'");
-  }
+  if (natoms === null) throw new Error("No encontré la línea 'N atoms'");
 
-  // Buscar sección "Atoms"
   let atomsStart = -1;
   for (let i = 0; i < lines.length; i++) {
     if (lines[i].match(/^\s*Atoms\b/i)) {
@@ -210,11 +230,8 @@ function parseLAMMPSData(text) {
       break;
     }
   }
-  if (atomsStart === -1) {
-    throw new Error("No encontré la sección 'Atoms'");
-  }
+  if (atomsStart === -1) throw new Error("No encontré la sección 'Atoms'");
 
-  // La línea siguiente a "Atoms" puede ser vacía; los datos empiezan después
   let i = atomsStart + 1;
   while (i < lines.length && !lines[i].trim()) i++;
 
@@ -223,32 +240,26 @@ function parseLAMMPSData(text) {
     const l = lines[i].trim();
     if (!l || l.startsWith("#")) { a--; continue; }
 
-    // Formato típico: id type x y z ...
     const parts = l.split(/\s+/);
-    if (parts.length < 5) {
-      // intenta formato: id mol type x y z ...
-      if (parts.length < 6) {
-        console.warn("Línea rara en sección Atoms:", l);
-        a--;
-        continue;
-      }
-      const id   = parseInt(parts[0], 10);
-      const type = parseInt(parts[2], 10);
-      const x = parseFloat(parts[3]);
-      const y = parseFloat(parts[4]);
-      const z = parseFloat(parts[5]);
-      atoms.push({ x, y, z, type });
-    } else {
-      const id   = parseInt(parts[0], 10);
+
+    if (parts.length >= 5) {
+      // formato: id type x y z ...
       const type = parseInt(parts[1], 10);
       const x = parseFloat(parts[2]);
       const y = parseFloat(parts[3]);
       const z = parseFloat(parts[4]);
       atoms.push({ x, y, z, type });
+    } else if (parts.length >= 6) {
+      // formato: id mol type x y z ...
+      const type = parseInt(parts[2], 10);
+      const x = parseFloat(parts[3]);
+      const y = parseFloat(parts[4]);
+      const z = parseFloat(parts[5]);
+      atoms.push({ x, y, z, type });
     }
   }
 
-  // Si no hay bounds, los calculamos de los átomos
+  // si no hay bounds, se calculan
   if (!bounds[0] || !bounds[1] || !bounds[2]) {
     let minX = Infinity, minY = Infinity, minZ = Infinity;
     let maxX = -Infinity, maxY = -Infinity, maxZ = -Infinity;
@@ -271,7 +282,7 @@ function parseLAMMPSData(text) {
 }
 
 // ------------------------------------------------------------------
-// Crear las esferitas con luz y sombra
+// Dibujar las esferas
 // ------------------------------------------------------------------
 function addAtomsToScene(scene, camera, controls, data) {
   const atoms = data.atoms;
@@ -312,7 +323,7 @@ function addAtomsToScene(scene, camera, controls, data) {
 
   const materialCache = {};
   const radius = maxSize * 0.015 || 0.5;
-  const geometry = new THREE.SphereGeometry(radius, 18, 18);
+  const geometry = new THREE.SphereGeometry(radius, 20, 20);
 
   atoms.forEach(a => {
     const t = a.type || 1;
