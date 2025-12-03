@@ -191,7 +191,7 @@ redirect_from:
   <!-- Text (right side) -->
   <div>
     <h2 style="color:#FFFFFF; font-size:1.8em; font-weight:700; margin-top:0; margin-bottom:12px; letter-spacing:0.5px;">
-      ⚛️ Science in Motion
+      ⚛️  Heat-Driven Transformation in NiTi
     </h2>
     <p style="color:#E0E0E0; font-size:1.05em; line-height:1.6; margin:0;">
     This animation visualizes a molecular dynamics simulation of a <b>B2 NiTi</b> nanostructure. 
