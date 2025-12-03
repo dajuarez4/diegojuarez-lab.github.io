@@ -156,6 +156,54 @@ redirect_from:
 </div>
 
 
+<p style="margin-bottom: 20px;">
+
+
+<div style="
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  align-items: center;
+  background: linear-gradient(135deg, #000000 0%, #001a40 100%);
+  padding: 32px;
+  border-radius: 18px;
+  border: 2px solid #004080;
+  box-shadow: 0 0 20px rgba(0, 64, 128, 0.3);
+  margin-bottom: 28px;
+">
+  <!-- Image (left side) -->
+  <div style="text-align:center;">
+    <img 
+      src="{{ '/images/NiTi_bcc_B2.gif' | relative_url }}" 
+      alt="Molecular dynamics simulations" 
+      style="
+        max-width:100%;
+        border-radius:16px;
+        box-shadow:0 0 25px rgba(0,64,128,0.5);
+        transition: transform 0.3s ease;
+      "
+      onmouseover="this.style.transform='scale(1.03)'"
+      onmouseout="this.style.transform='scale(1)'"
+      loading="lazy"
+    >
+  </div>
+
+  <!-- Text (right side) -->
+  <div>
+    <h2 style="color:#FFFFFF; font-size:1.8em; font-weight:700; margin-top:0; margin-bottom:12px; letter-spacing:0.5px;">
+      ⚛️ Science in Motion
+    </h2>
+    <p style="color:#E0E0E0; font-size:1.05em; line-height:1.6; margin:0;">
+    This animation visualizes a molecular dynamics simulation of a <b>B2 NiTi</b> nanostructure. 
+  The right region is gradually heated until melting, while the fixed left side remains crystalline, 
+  revealing the atomic-scale evolution of the solid–liquid interface. .
+    </p>
+  </div>
+</div>
+
+
+
+
 
 
 <p style="margin-bottom: 20px;">
