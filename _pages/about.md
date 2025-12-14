@@ -289,7 +289,7 @@ redirect_from:
   <div class="ps-wrap">
     <div class="ps-head">
       <h2 class="ps-title">📸 A bit of me — in frames</h2>
-      <p class="ps-sub">Photos rotate every 10 seconds with smooth transitions.</p>
+      <p class="ps-sub"> Some pics of my journey.</p>
     </div>
 
     <div class="ps-stage" aria-label="Rotating photo showcase">
