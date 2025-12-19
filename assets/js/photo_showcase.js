@@ -23,7 +23,7 @@
 
     const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
     const FADE_MS = prefersReduced ? 0 : 450;
-    const HOLD_MS = 10000; // prueba rápido: pon 2000
+    const HOLD_MS = 5000; // prueba rápido: pon 2000
 
     let lastSet = new Set();
 
