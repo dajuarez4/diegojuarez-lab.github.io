@@ -22,8 +22,8 @@
     PS_PHOTOS.forEach(p => { const img = new Image(); img.src = p.src; });
 
     const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-    const FADE_MS = prefersReduced ? 0 : 450;
-    const HOLD_MS = 5000; // prueba rápido: pon 2000
+    const FADE_MS = prefersReduced ? 0 : 250;
+    const HOLD_MS = 4000; // prueba rápido: pon 2000
 
     let lastSet = new Set();
 
