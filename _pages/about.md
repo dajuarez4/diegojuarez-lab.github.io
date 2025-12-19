@@ -286,8 +286,14 @@ redirect_from:
 
 
 
+<p style="margin-bottom: 20px;">
 
-<!-- ===================== PHOTO SHOWCASE (ADD THIS AT THE BOTTOM) ===================== -->
+
+
+
+
+
+<!-- ===================== PHOTO SHOWCASE ===================== -->
 <section id="photo-showcase" style="margin-top:52px;">
   <div class="ps-wrap">
     <div class="ps-head">
@@ -296,7 +302,6 @@ redirect_from:
     </div>
 
     <div class="ps-stage" aria-label="Rotating photo showcase">
-      <!-- IMPORTANT: give them a real initial src so it’s never blank -->
       <img id="ps-main" class="ps-main"
            src="{{ '/images/me_01.jpg' | relative_url }}"
            alt="Photo spotlight" loading="lazy" />
@@ -338,7 +343,6 @@ redirect_from:
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35); overflow:hidden;
   }
   .ps-main{ width:100%; height:auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius:16px; display:block;
-    transform: translateY(0) scale(1); opacity:1;
     transition: opacity 900ms ease, transform 900ms ease, filter 900ms ease;
     box-shadow: 0 0 22px rgba(0,64,128,.35);
     will-change: opacity, transform, filter;
@@ -347,7 +351,7 @@ redirect_from:
 
   .ps-mini{ position:absolute; width:min(190px, 30vw); aspect-ratio: 4 / 5; object-fit: cover; border-radius:16px;
     border:1px solid rgba(255,255,255,.18); box-shadow: 0 18px 40px rgba(0,0,0,.45);
-    opacity:.95; transform: scale(1) rotate(0deg);
+    opacity:.95;
     transition: opacity 900ms ease, transform 900ms ease, filter 900ms ease;
     will-change: opacity, transform, filter;
   }
@@ -373,121 +377,19 @@ redirect_from:
   }
 </style>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const PS_PHOTOS = [
-    { src: "{{ '/images/me_01.jpg' | relative_url }}", alt: "Diego — photo 1" },
-    { src: "{{ '/images/me_02.jpg' | relative_url }}", alt: "Diego — photo 2" },
-    { src: "{{ '/images/me_03.jpg' | relative_url }}", alt: "Diego — photo 3" },
-    { src: "{{ '/images/me_04.jpg' | relative_url }}", alt: "Diego — photo 4" },
-    { src: "{{ '/images/me_05.jpg' | relative_url }}", alt: "Diego — photo 5" },
-    { src: "{{ '/images/me_06.jpg' | relative_url }}", alt: "Diego — photo 6" }
-  ];
-
-  const main  = document.getElementById("ps-main");
-  const mini1 = document.getElementById("ps-mini-1");
-  const mini2 = document.getElementById("ps-mini-2");
-  const mini3 = document.getElementById("ps-mini-3");
-  if (!main) return; // prevents crashing if HTML didn’t render
-
-  const dots  = Array.from(document.querySelectorAll("#photo-showcase .ps-dot"));
-
-  PS_PHOTOS.forEach(p => { const img = new Image(); img.src = p.src; });
-
-  const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-  const FADE_MS = prefersReduced ? 0 : 450;
-  const HOLD_MS = 10000;
-
-  let lastSet = new Set();
-
-  function shuffle(arr){
-    const a = arr.slice();
-    for (let i = a.length - 1; i > 0; i--){
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
-  }
-
-  function pickDistinct(k){
-    const indices = shuffle([...PS_PHOTOS.keys()]);
-    const picks = [];
-    for (const idx of indices){
-      if (!lastSet.has(idx)){
-        picks.push(idx);
-        if (picks.length === k) break;
-      }
-    }
-    if (picks.length < k){
-      for (const idx of indices){
-        if (!picks.includes(idx)){
-          picks.push(idx);
-          if (picks.length === k) break;
-        }
-      }
-    }
-    return picks;
-  }
-
-  function swapImage(el, photo){
-    if (!el) return;
-    if (!prefersReduced) el.classList.add("is-leaving");
-    setTimeout(() => {
-      el.src = photo.src;
-      el.alt = photo.alt || "";
-      if (!prefersReduced) el.classList.remove("is-leaving");
-    }, FADE_MS);
-  }
-
-  function tick(){
-    const picks = pickDistinct(Math.min(4, PS_PHOTOS.length));
-    lastSet = new Set(picks);
-
-    const p0 = PS_PHOTOS[picks[0]];
-    const p1 = PS_PHOTOS[picks[1] ?? picks[0]];
-    const p2 = PS_PHOTOS[picks[2] ?? picks[0]];
-    const p3 = PS_PHOTOS[picks[3] ?? picks[0]];
-
-    swapImage(main,  p0);
-    swapImage(mini1, p1);
-    swapImage(mini2, p2);
-    swapImage(mini3, p3);
-
-    const on = Math.floor(Math.random() * Math.max(1, dots.length));
-    dots.forEach((d,i)=>d.classList.toggle("is-on", i === on));
-  }
-
-  setTimeout(tick, 800);
-  setInterval(tick, HOLD_MS);
-});
+<script id="ps-photos-json" type="application/json">
+[
+  { "src": "{{ '/images/me_01.jpg' | relative_url }}", "alt": "Diego — photo 1" },
+  { "src": "{{ '/images/me_02.jpg' | relative_url }}", "alt": "Diego — photo 2" },
+  { "src": "{{ '/images/me_03.jpg' | relative_url }}", "alt": "Diego — photo 3" },
+  { "src": "{{ '/images/me_04.jpg' | relative_url }}", "alt": "Diego — photo 4" }
+]
 </script>
 
+<script src="{{ '/assets/js/photo_showcase.js' | relative_url }}"></script>
 
 
 
-<!-- <p style="margin-bottom: 20px;">
 
 
-
-<div style="max-width: 900px; margin: 0 auto;">
-  <h3>Interactive NiTi viewer (LAMMPS dump)</h3>
-
-  
-  <input type="file" id="dump-input" accept=".dump,.txt,.dat" />
-
-
-  <div id="atom-viewer" style="width: 100%; height: 500px; margin-top: 10px;"></div>
-</div>
-
-
-<script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-<script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
-
-
-<script src="/assets/js/atom_viewer_upload.js"></script>
-
-<script>
-  
-  createAtomViewerWithUpload("atom-viewer", "dump-input");
-</script> -->
 
