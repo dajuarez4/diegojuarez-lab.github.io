@@ -382,7 +382,9 @@ redirect_from:
   { "src": "{{ '/images/me_01.jpg' | relative_url }}", "alt": "Diego — photo 1" },
   { "src": "{{ '/images/me_02.jpg' | relative_url }}", "alt": "Diego — photo 2" },
   { "src": "{{ '/images/me_03.jpg' | relative_url }}", "alt": "Diego — photo 3" },
-  { "src": "{{ '/images/me_04.jpg' | relative_url }}", "alt": "Diego — photo 4" }
+  { "src": "{{ '/images/me_04.jpg' | relative_url }}", "alt": "Diego — photo 4" },
+  { "src": "{{ '/images/me_05.jpg' | relative_url }}", "alt": "Diego — photo 5" },
+  { "src": "{{ '/images/me_06.jpg' | relative_url }}", "alt": "Diego — photo 6" },
 ]
 </script>
 
