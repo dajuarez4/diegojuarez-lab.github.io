@@ -297,7 +297,7 @@ redirect_from:
 <section id="photo-showcase" class="psc" style="margin-top:52px;">
   <div class="psc-wrap">
     <div class="psc-head">
-      <h2 class="psc-title">📸 A bit of me — in frames</h2>
+      <h2 class="psc-title">📸 A bit of me </h2>
       <p class="psc-sub">Some pics of my journey.</p>
     </div>
 
@@ -446,7 +446,17 @@ redirect_from:
   { "src": "{{ '/images/me_03.jpg' | relative_url }}", "alt": "Diego — photo 3" },
   { "src": "{{ '/images/me_04.jpg' | relative_url }}", "alt": "Diego — photo 4" },
   { "src": "{{ '/images/me_05.jpg' | relative_url }}", "alt": "Diego — photo 5" },
-  { "src": "{{ '/images/me_06.jpg' | relative_url }}", "alt": "Diego — photo 6" }
+  { "src": "{{ '/images/me_06.jpg' | relative_url }}", "alt": "Diego — photo 6" },
+  { "src": "{{ '/images/me_07.jpg' | relative_url }}", "alt": "Diego — photo 7" },
+  { "src": "{{ '/images/me_08.jpg' | relative_url }}", "alt": "Diego — photo 8" },
+  { "src": "{{ '/images/me_09.jpg' | relative_url }}", "alt": "Diego — photo 9" },
+  { "src": "{{ '/images/me_10.jpg' | relative_url }}", "alt": "Diego — photo 10" },
+  { "src": "{{ '/images/me_11.jpg' | relative_url }}", "alt": "Diego — photo 11" },
+  { "src": "{{ '/images/me_12.jpg' | relative_url }}", "alt": "Diego — photo 12" },
+  { "src": "{{ '/images/me_13.jpg' | relative_url }}", "alt": "Diego — photo 13" },
+  { "src": "{{ '/images/me_14.jpg' | relative_url }}", "alt": "Diego — photo 14" },
+  { "src": "{{ '/images/me_07-2.jpg' | relative_url }}", "alt": "Diego — photo 15" }
+
 ]
 </script>
 
