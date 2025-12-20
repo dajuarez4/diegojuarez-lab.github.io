@@ -319,7 +319,7 @@ redirect_from:
 </section>
 
 <style>
-  #photo-showcase { max-width: 1100px; margin-left:auto; margin-right:auto; }
+  #photo-showcase { max-width: 1300px; margin-left:auto; margin-right:auto; }
 
   .psc-wrap{
     position:relative;
@@ -352,7 +352,7 @@ redirect_from:
     background: rgba(2,6,23,.55);
     border:1px solid rgba(148,163,184,.18);
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 3 / 2;
   }
 
   .psc-img{
