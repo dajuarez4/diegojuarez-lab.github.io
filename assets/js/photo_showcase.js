@@ -3,91 +3,92 @@
     const root = document.getElementById("photo-showcase");
     if (!root) return;
 
-    const main  = document.getElementById("ps-main");
-    const mini1 = document.getElementById("ps-mini-1");
-    const mini2 = document.getElementById("ps-mini-2");
-    const mini3 = document.getElementById("ps-mini-3");
-    if (!main) return;
-
-    const dots = Array.from(root.querySelectorAll(".ps-dot"));
-
+    const imgEl = document.getElementById("psc-img");
+    const prevBtn = document.getElementById("psc-prev");
+    const nextBtn = document.getElementById("psc-next");
+    const counterEl = document.getElementById("psc-counter");
+    const dotsWrap = document.getElementById("psc-dots");
     const jsonEl = document.getElementById("ps-photos-json");
-    if (!jsonEl) return;
 
-    let PS_PHOTOS = [];
-    try { PS_PHOTOS = JSON.parse(jsonEl.textContent.trim()); } catch(e){ return; }
-    if (!Array.isArray(PS_PHOTOS) || PS_PHOTOS.length === 0) return;
+    if (!imgEl || !prevBtn || !nextBtn || !jsonEl) return;
+
+    let PHOTOS = [];
+    try {
+      PHOTOS = JSON.parse(jsonEl.textContent.trim());
+    } catch (e) {
+      return;
+    }
+    if (!Array.isArray(PHOTOS) || PHOTOS.length === 0) return;
 
     // Preload
-    PS_PHOTOS.forEach(p => { const img = new Image(); img.src = p.src; });
+    PHOTOS.forEach(p => {
+      const im = new Image();
+      im.src = p.src;
+    });
 
     const prefersReduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-    const FADE_MS = prefersReduced ? 0 : 450;
-    const HOLD_MS = 3000; // prueba rápido: pon 2000
+    const FADE_MS = prefersReduced ? 0 : 120;
 
-    let lastSet = new Set();
+    let i = 0;
 
-    function shuffle(arr){
-      const a = arr.slice();
-      for (let i = a.length - 1; i > 0; i--){
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-      }
-      return a;
+    function buildDots() {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = "";
+      PHOTOS.forEach((_, k) => {
+        const d = document.createElement("button");
+        d.type = "button";
+        d.className = "psc-dot";
+        d.setAttribute("aria-label", `Go to photo ${k + 1}`);
+        d.addEventListener("click", () => {
+          i = k;
+          render();
+        });
+        dotsWrap.appendChild(d);
+      });
     }
 
-    function pickDistinct(k){
-      const indices = shuffle([...Array(PS_PHOTOS.length).keys()]);
-      const picks = [];
-      for (const idx of indices){
-        if (!lastSet.has(idx)){
-          picks.push(idx);
-          if (picks.length === k) break;
-        }
-      }
-      if (picks.length < k){
-        for (const idx of indices){
-          if (!picks.includes(idx)){
-            picks.push(idx);
-            if (picks.length === k) break;
-          }
-        }
-      }
-      return picks;
+    function setDots() {
+      if (!dotsWrap) return;
+      [...dotsWrap.children].forEach((d, k) => d.classList.toggle("is-on", k === i));
     }
 
-    function swapImage(el, photo){
-      if (!el) return;
-      if (!prefersReduced) el.classList.add("is-leaving");
+    function render() {
+      const p = PHOTOS[i];
+
+      if (!prefersReduced) imgEl.classList.add("is-fading");
       setTimeout(() => {
-        el.src = photo.src;
-        el.alt = photo.alt || "";
-        if (!prefersReduced) el.classList.remove("is-leaving");
+        imgEl.src = p.src;
+        imgEl.alt = p.alt || "";
+        if (counterEl) counterEl.textContent = `${i + 1} / ${PHOTOS.length}`;
+        setDots();
+        if (!prefersReduced) imgEl.classList.remove("is-fading");
       }, FADE_MS);
     }
 
-    function tick(){
-      const picks = pickDistinct(Math.min(4, PS_PHOTOS.length));
-      lastSet = new Set(picks);
-
-      const p0 = PS_PHOTOS[picks[0]];
-      const p1 = PS_PHOTOS[picks[1] ?? picks[0]];
-      const p2 = PS_PHOTOS[picks[2] ?? picks[0]];
-      const p3 = PS_PHOTOS[picks[3] ?? picks[0]];
-
-      swapImage(main,  p0);
-      swapImage(mini1, p1);
-      swapImage(mini2, p2);
-      swapImage(mini3, p3);
-
-      if (dots.length){
-        const on = Math.floor(Math.random() * dots.length);
-        dots.forEach((d,i)=>d.classList.toggle("is-on", i === on));
-      }
+    function next() {
+      i = (i + 1) % PHOTOS.length;
+      render();
     }
 
-    setTimeout(tick, 800);
-    setInterval(tick, HOLD_MS);
+    function prev() {
+      i = (i - 1 + PHOTOS.length) % PHOTOS.length;
+      render();
+    }
+
+    prevBtn.addEventListener("click", prev);
+    nextBtn.addEventListener("click", next);
+
+    // Keyboard arrows
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+
+    buildDots();
+    render();
+
+    // OPTIONAL: auto-advance (uncomment)
+    // setInterval(next, 6000);
   }
 
   if (document.readyState === "loading") {
