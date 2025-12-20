@@ -293,87 +293,147 @@ redirect_from:
 
 
 
-<!-- ===================== PHOTO SHOWCASE ===================== -->
-<section id="photo-showcase" style="margin-top:52px;">
-  <div class="ps-wrap">
-    <div class="ps-head">
-      <h2 class="ps-title">📸 A bit of me — in frames</h2>
-      <p class="ps-sub">Some pics of my journey.</p>
+<!-- ===================== SIMPLE PHOTO CAROUSEL ===================== -->
+<section id="photo-showcase" class="psc" style="margin-top:52px;">
+  <div class="psc-wrap">
+    <div class="psc-head">
+      <h2 class="psc-title">📸 A bit of me — in frames</h2>
+      <p class="psc-sub">Some pics of my journey.</p>
     </div>
 
-    <div class="ps-stage" aria-label="Rotating photo showcase">
-      <img id="ps-main" class="ps-main"
+    <div class="psc-frame" aria-label="Photo carousel">
+      <button type="button" class="psc-btn psc-prev" id="psc-prev" aria-label="Previous photo">‹</button>
+
+      <img id="psc-img" class="psc-img"
            src="{{ '/images/me_01.jpg' | relative_url }}"
-           alt="Photo spotlight" loading="lazy" />
+           alt="Photo" loading="lazy" />
 
-      <img id="ps-mini-1" class="ps-mini ps-mini-1"
-           src="{{ '/images/me_02.jpg' | relative_url }}"
-           alt="" loading="lazy" />
-      <img id="ps-mini-2" class="ps-mini ps-mini-2"
-           src="{{ '/images/me_03.jpg' | relative_url }}"
-           alt="" loading="lazy" />
-      <img id="ps-mini-3" class="ps-mini ps-mini-3"
-           src="{{ '/images/me_04.jpg' | relative_url }}"
-           alt="" loading="lazy" />
+      <button type="button" class="psc-btn psc-next" id="psc-next" aria-label="Next photo">›</button>
     </div>
 
-    <div class="ps-dots" aria-label="Slideshow status">
-      <span class="ps-dot"></span><span class="ps-dot"></span><span class="ps-dot"></span>
+    <div class="psc-footer">
+      <div id="psc-counter" class="psc-counter" aria-label="Photo counter"></div>
+      <div id="psc-dots" class="psc-dots" aria-label="Slideshow position"></div>
     </div>
   </div>
 </section>
 
 <style>
   #photo-showcase { max-width: 1100px; margin-left:auto; margin-right:auto; }
-  .ps-wrap{ position:relative; overflow:hidden; border-radius:20px; padding:18px; border:2px solid #004080;
+
+  .psc-wrap{
+    position:relative;
+    overflow:hidden;
+    border-radius:20px;
+    padding:18px;
+    border:2px solid #004080;
     background: linear-gradient(135deg, #000000 0%, #001a40 100%);
     box-shadow: 0 0 28px rgba(0, 64, 128, 0.35);
   }
-  .ps-wrap:before{ content:""; position:absolute; inset:-2px;
-    background: radial-gradient(circle at 20% 10%, rgba(0,128,255,.18), transparent 40%),
-                radial-gradient(circle at 80% 90%, rgba(0,128,255,.14), transparent 45%);
+  .psc-wrap:before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(0,128,255,.18), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(0,128,255,.14), transparent 45%);
     pointer-events:none;
   }
-  .ps-head{ position:relative; padding:10px 10px 14px 10px; }
-  .ps-title{ margin:0; color:#fff; font-size:1.8em; font-weight:800; letter-spacing:.3px; }
-  .ps-sub{ margin:8px 0 0 0; color:#dbeafe; opacity:.9; font-size:1.02em; line-height:1.55; }
 
-  .ps-stage{ position:relative; margin-top:14px; border-radius:18px; padding:10px;
-    background: rgba(2,6,23,.55); border:1px solid rgba(148,163,184,.18);
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35); overflow:hidden;
+  .psc-head{ position:relative; padding:10px 10px 14px 10px; }
+  .psc-title{ margin:0; color:#fff; font-size:1.8em; font-weight:800; letter-spacing:.3px; }
+  .psc-sub{ margin:8px 0 0 0; color:#dbeafe; opacity:.9; font-size:1.02em; line-height:1.55; }
+
+  .psc-frame{
+    position:relative;
+    margin-top:14px;
+    border-radius:18px;
+    overflow:hidden;
+    background: rgba(2,6,23,.55);
+    border:1px solid rgba(148,163,184,.18);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
+    aspect-ratio: 16 / 9;
   }
-  .ps-main{ width:100%; height:auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius:16px; display:block;
-    transition: opacity 900ms ease, transform 900ms ease, filter 900ms ease;
+
+  .psc-img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    display:block;
+    transition: opacity 260ms ease, transform 260ms ease, filter 260ms ease;
     box-shadow: 0 0 22px rgba(0,64,128,.35);
     will-change: opacity, transform, filter;
   }
-  .ps-main.is-leaving{ opacity:0; transform: translateY(10px) scale(.99); filter: blur(1px); }
-
-  .ps-mini{ position:absolute; width:min(190px, 30vw); aspect-ratio: 4 / 5; object-fit: cover; border-radius:16px;
-    border:1px solid rgba(255,255,255,.18); box-shadow: 0 18px 40px rgba(0,0,0,.45);
-    opacity:.95;
-    transition: opacity 900ms ease, transform 900ms ease, filter 900ms ease;
-    will-change: opacity, transform, filter;
+  .psc-img.is-fading{
+    opacity:0.15;
+    transform: scale(.995);
+    filter: blur(.6px);
   }
-  .ps-mini.is-leaving{ opacity:0; transform: translateY(10px) scale(.98); filter: blur(1px); }
 
-  .ps-mini-1{ left:14px; bottom:14px; transform: rotate(-6deg); }
-  .ps-mini-2{ right:14px; bottom:18px; transform: rotate(7deg); }
-  .ps-mini-3{ right:18px; top:18px; transform: rotate(-5deg); }
-
-  .ps-dots{ position:relative; display:flex; gap:8px; justify-content:center; padding:14px 0 4px; }
-  .ps-dot{ width:10px; height:10px; border-radius:50%;
-    background: rgba(219,234,254,.35); border:1px solid rgba(219,234,254,.25);
-    transition: transform 350ms ease, opacity 350ms ease, background 350ms ease; opacity:.75;
+  .psc-btn{
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+    width:44px;
+    height:44px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.18);
+    background: rgba(0,0,0,.35);
+    color:#fff;
+    font-size:28px;
+    line-height:40px;
+    cursor:pointer;
+    display:grid;
+    place-items:center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background .12s ease, transform .12s ease;
+    user-select:none;
+    z-index:5;
   }
-  .ps-dot.is-on{ background: rgba(255,255,255,.9); opacity:1; transform: scale(1.18); }
+  .psc-btn:hover{ background: rgba(0,0,0,.55); }
+  .psc-btn:active{ transform: translateY(-50%) scale(.96); }
+  .psc-prev{ left: 12px; }
+  .psc-next{ right: 12px; }
 
-  @media (max-width: 720px){
-    .ps-mini{ display:none; }
-    .ps-title{ font-size:1.55em; }
+  .psc-footer{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-top:12px;
+    padding: 0 6px;
+    flex-wrap:wrap;
   }
+  .psc-counter{
+    color: rgba(255,255,255,.75);
+    font-size: .95rem;
+    white-space: nowrap;
+  }
+  .psc-dots{
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .psc-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: rgba(219,234,254,.35);
+    border:1px solid rgba(219,234,254,.25);
+    opacity:.75;
+    cursor:pointer;
+    transition: transform 220ms ease, opacity 220ms ease, background 220ms ease;
+  }
+  .psc-dot.is-on{
+    background: rgba(255,255,255,.92);
+    opacity:1;
+    transform: scale(1.15);
+  }
+
   @media (prefers-reduced-motion: reduce){
-    .ps-main, .ps-mini, .ps-dot { transition:none !important; }
+    .psc-img, .psc-btn, .psc-dot { transition:none !important; }
   }
 </style>
 
@@ -384,12 +444,11 @@ redirect_from:
   { "src": "{{ '/images/me_03.jpg' | relative_url }}", "alt": "Diego — photo 3" },
   { "src": "{{ '/images/me_04.jpg' | relative_url }}", "alt": "Diego — photo 4" },
   { "src": "{{ '/images/me_05.jpg' | relative_url }}", "alt": "Diego — photo 5" },
-  { "src": "{{ '/images/me_06.jpg' | relative_url }}", "alt": "Diego — photo 6" },
+  { "src": "{{ '/images/me_06.jpg' | relative_url }}", "alt": "Diego — photo 6" }
 ]
 </script>
 
 <script src="{{ '/assets/js/photo_showcase.js' | relative_url }}"></script>
-
 
 
 
