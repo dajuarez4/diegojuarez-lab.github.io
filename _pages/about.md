@@ -319,7 +319,7 @@ redirect_from:
 </section>
 
 <style>
-  #photo-showcase { max-width: 1300px; margin-left:auto; margin-right:auto; }
+  #photo-showcase { max-width: 1500px; margin-left:auto; margin-right:auto; }
 
   .psc-wrap{
     position:relative;
