@@ -352,7 +352,9 @@ redirect_from:
     background: rgba(2,6,23,.55);
     border:1px solid rgba(148,163,184,.18);
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
-    aspect-ratio: 3 / 2;
+    /* aspect-ratio: 3 / 2; */
+    aspect-ratio: auto;
+    height: 650px;   
   }
 
   .psc-img{
