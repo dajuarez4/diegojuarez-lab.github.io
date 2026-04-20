@@ -140,16 +140,15 @@ button {
 }
 
 .lab-home__actions {
-  display: grid;
-  grid-template-columns: max-content minmax(0, 1fr) max-content;
-  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
   gap: 0.85rem;
   width: 100%;
   margin-top: 1.5rem;
 }
 
 .lab-home__actions .lab-button--ghost {
-  justify-self: end;
+  margin-left: auto;
 }
 
 .research-project__actions {
@@ -817,11 +816,11 @@ button {
   }
 
   .lab-home__actions {
-    grid-template-columns: 1fr;
+    flex-wrap: wrap;
   }
 
   .lab-home__actions .lab-button--ghost {
-    justify-self: start;
+    margin-left: 0;
   }
 
   .lab-stat-grid {
