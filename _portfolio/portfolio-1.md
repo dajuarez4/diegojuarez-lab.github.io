@@ -1,32 +1,36 @@
 ---
-title: "Utilities To Execute Pipelines"
-excerpt: "This framework automates the set up, submission, and execution of scientific codes,
-generally taking care of the minutiae. Post-processing tasks, such as the development of machine
-learning models, are easier because of a common data structure."
+title: "Utilities to Execute Pipelines (UTEP)"
+excerpt: "A Python framework for preparing inputs, launching jobs, and organizing large scientific workflows on HPC systems."
 collection: portfolio
 ---
 
-To reduce human error in creating input files for simulations, especially when handling hundreds or even thousands of jobs, we developed Utilities to Execute Pipelines (UTEP), a robust
-and versatile Python framework to streamline the generation and analysis of large-scale scientific
-datasets. This framework automates the set up, submission, and execution of scientific codes,
-generally taking care of the minutiae. Post-processing tasks, such as the development of machine
-learning models, are easier because of a common data structure. UTEP was deployed on Perlmutter, a National Energy Research Scientific Computing Center (NERSC) supercomputer, but
-it can be deployed on any Unix system. Here we present instances of UTEP applied to projects
-in computational thermodynamics of alloys, lattice dynamics of crystals, charge distributions in a
-semiconductor, and a multi-objective genetic algorithms used to test crystal stability.
+<div class="research-project">
+  <div class="research-project__intro">
+    <p class="research-project__lede">
+      Utilities to Execute Pipelines (UTEP) is a Python framework developed to reduce human error
+      when preparing, submitting, and analyzing large collections of scientific simulations.
+    </p>
+    <p>
+      The framework standardizes input generation, job execution, and post-processing so that large
+      parameter sweeps remain reproducible and easier to inspect. It was designed for workloads that
+      can quickly grow from dozens of runs to thousands of jobs.
+    </p>
+    <p>
+      UTEP has been deployed on Perlmutter at NERSC and can also be adapted to other Unix-based
+      environments. It has supported projects in computational thermodynamics, lattice dynamics,
+      charge-distribution studies, and workflow-driven crystal stability analysis.
+    </p>
+  </div>
 
-<img src="{{ '/images/utep_logo.png' | relative_url }}" alt="UTEP Logo"
-         style="max-width:40%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
+  <div class="research-project__media research-project__media--narrow">
+    <img src="{{ '/images/utep_logo.png' | relative_url }}" alt="UTEP framework logo" loading="lazy">
+  </div>
 
-
-
-<!-- Fallback links -->
-<p style="text-align:center;">
-  <a class="btn btn--primary" href="{{ '/images/utep.pdf' | relative_url }}" target="_blank">Open PDF</a>
-  &nbsp;|&nbsp;
-  <a href="{{ '/images/utep.pdf' | relative_url }}" download>Download PDF</a>
-</p>
-
+  <div class="research-project__actions">
+    <a class="lab-button lab-button--primary" href="{{ '/images/utep.pdf' | relative_url }}" target="_blank" rel="noopener">Open PDF</a>
+    <a class="lab-button lab-button--ghost" href="https://github.com/jamunozlab/UTEP-HELD" target="_blank" rel="noopener">Repository</a>
+  </div>
+</div>
 
 
 

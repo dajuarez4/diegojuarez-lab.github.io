@@ -1,467 +1,240 @@
 ---
 permalink: /
-title: "Diego Armando Juarez Rosales"
+title: ""
 author_profile: true
+excerpt: "PhD student in physics at UTEP working in lattice dynamics, atomistic simulation, and scientific workflow automation."
 redirect_from: 
   - /about/
   - /about.html
 ---
+<div class="lab-home">
+  <section class="lab-home__hero">
+    <div class="lab-home__copy">
+      <p class="lab-eyebrow">Computational Physics and Materials Modeling</p>
+      <h1 class="lab-home__title">Diego Armando Juarez Rosales</h1>
+      <p class="lab-home__lead">
+        I am a PhD student in Physics at The University of Texas at El Paso. This site brings together
+        selected research projects, conference material, and interactive visualizations from my work in
+        lattice dynamics, atomistic simulation, and scientific workflow automation.
+      </p>
 
+      <div class="lab-home__actions">
+        <a class="lab-button lab-button--primary" href="{{ '/portfolio/' | relative_url }}">Research Projects</a>
+        <a class="lab-button lab-button--ghost" href="{{ '/cv/' | relative_url }}">Curriculum Vitae</a>
+      </div>
 
-
-
-<div style="
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap:24px;
-  align-items:center;
-  background:#f5f8ff;
-  padding:24px;
-  border-radius:16px;
-  border:2px solid #004080;
-">
-  
-  <div>
-    <h2 style="color:#004080; margin-top:0; font-size:1.8em; font-weight:700; margin-bottom:12px;">
-      👋 Hello everyone!
-    </h2>
-    <p style="color:#222; font-size:1.05em; line-height:1.6; margin:0;">
-      Welcome to my academic portfolio! I’ll be uploading <b>presentations</b>, <b>posters</b>, and <b>future papers</b>.
-      I’ll also share <i>phonon simulations</i> and other visuals from my research journey.
-      I hope this page reflects my passion for science and my goal of becoming a dedicated researcher and scientist.
-    </p>
-  </div>
-
-  <div style="text-align:center;">
-    <img 
-      src="{{ '/images/phonons.gif' | relative_url }}" 
-      alt="Phonon simulation animation"
-      style="
-        max-width:100%;
-        border-radius:14px;
-        box-shadow:0 0 15px rgba(0,0,0,0.18);
-        transition: transform 0.3s ease;
-      "
-      onmouseover="this.style.transform='scale(1.03)'"
-      onmouseout="this.style.transform='scale(1)'"
-      loading="lazy"
-    >
-  </div>
-</div>
-
-
-
-
-<p style="margin-bottom: 20px;">
-
-
-<div style="
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 28px;
-  align-items: center;
-  background: linear-gradient(135deg, #000000 0%, #001a40 100%);
-  padding: 32px;
-  border-radius: 18px;
-  border: 2px solid #004080;
-  box-shadow: 0 0 20px rgba(0, 64, 128, 0.3);
-  margin-bottom: 28px;
-">
-  <!-- Image (left side) -->
-  <div style="text-align:center;">
-    <img 
-      src="{{ '/images/phon_disp_GaAs.gif' | relative_url }}" 
-      alt="Phonon dispersion animation for 2D GaAs" 
-      style="
-        max-width:100%;
-        border-radius:16px;
-        box-shadow:0 0 25px rgba(0,64,128,0.5);
-        transition: transform 0.3s ease;
-      "
-      onmouseover="this.style.transform='scale(1.03)'"
-      onmouseout="this.style.transform='scale(1)'"
-      loading="lazy"
-    >
-  </div>
-
-  <!-- Text (right side) -->
-  <div>
-    <h2 style="color:#FFFFFF; font-size:1.8em; font-weight:700; margin-top:0; margin-bottom:12px; letter-spacing:0.5px;">
-      ⚛️ Science in Motion
-    </h2>
-    <p style="color:#E0E0E0; font-size:1.05em; line-height:1.6; margin:0;">
-      Explore my research on lattice vibrations and nanoscale behavior. Here you can see a visualization of the  <b>phonon dispersion in 2D GaAs</b>.
-    </p>
-  </div>
-</div>
-
-
-<p style="margin-bottom: 20px;">
-
-
-<div style="
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  align-items: center;
-  background: #ffffff;
-  padding: 28px;
-  border-radius: 18px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
-">
-  <!-- Images (left side) -->
-  <div style="text-align:center;">
-    <img 
-      src="{{ '/images/image70.gif' | relative_url }}" 
-      alt="Birch-Murnaghan EOS fit for NiTi with antisite defects" 
-      style="
-        max-width:100%;
-        border-radius:16px;
-        box-shadow:0 0 18px rgba(15,23,42,0.15);
-        transition: transform 0.3s ease;
-        margin-bottom:18px;
-      "
-      onmouseover="this.style.transform='scale(1.03)'"
-      onmouseout="this.style.transform='scale(1)'"
-      loading="lazy"
-    >
-
-    <img 
-      src="{{ '/images/image95.gif' | relative_url }}" 
-      alt="Second GIF description" 
-      style="
-        max-width:100%;
-        border-radius:16px;
-        box-shadow:0 0 18px rgba(15,23,42,0.15);
-        transition: transform 0.3s ease;
-      "
-      onmouseover="this.style.transform='scale(1.03)'"
-      onmouseout="this.style.transform='scale(1)'"
-      loading="lazy"
-    >
-    
-  </div>
-
-  <!-- Text (right side) -->
-  <div>
-    <h2 style="color:#0f172a; font-size:1.7em; font-weight:700; margin-top:0; margin-bottom:10px;">
-      🧮 Birch–Murnaghan EOS for NiTi with point defects
-    </h2>
-    <p style="color:#334155; font-size:1.05em; line-height:1.6; margin:0;">
-      This GIF showcases another result from my work: the <b>Birch–Murnaghan equation-of-state fit for NiTi with point defects</b>.  
-      It highlights how the alloy’s mechanical response evolves with volume and how point defects modify its equilibrium properties.
-    </p>
-  </div>
-</div>
-
-
-<p style="margin-bottom: 20px;">
-
-
-<div style="
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 28px;
-  align-items: center;
-  background: linear-gradient(135deg, #000000 0%, #001a40 100%);
-  padding: 32px;
-  border-radius: 18px;
-  border: 2px solid #004080;
-  box-shadow: 0 0 20px rgba(0, 64, 128, 0.3);
-  margin-bottom: 28px;
-">
-  <!-- Image (left side) -->
-  <div style="text-align:center;">
-    <img 
-      src="{{ '/images/NiTi_bcc_B2.gif' | relative_url }}" 
-      alt="Molecular dynamics simulations" 
-      style="
-        max-width:100%;
-        border-radius:16px;
-        box-shadow:0 0 25px rgba(0,64,128,0.5);
-        transition: transform 0.3s ease;
-      "
-      onmouseover="this.style.transform='scale(1.03)'"
-      onmouseout="this.style.transform='scale(1)'"
-      loading="lazy"
-    >
-  </div>
-
-  <!-- Text (right side) -->
-  <div>
-    <h2 style="color:#FFFFFF; font-size:1.8em; font-weight:700; margin-top:0; margin-bottom:12px; letter-spacing:0.5px;">
-      ⚛️  Heat-Driven Transformation in NiTi
-    </h2>
-    <p style="color:#E0E0E0; font-size:1.05em; line-height:1.6; margin:0;">
-    This animation visualizes a molecular dynamics simulation of a <b>B2 NiTi</b> nanostructure. 
-  The right region is gradually heated until melting, while the fixed left side remains crystalline, 
-  revealing the atomic-scale evolution of the solid–liquid interface. .
-    </p>
-  </div>
-</div>
-
-
-
-
-
-
-<p style="margin-bottom: 20px;">
-
-
-
-
-
-<h2 style="text-align:center; margin-top:32px; margin-bottom:12px;">
-  Click anywhere to generate a lattice vibration <b>(phonon)</b>.
-</h2>
-
-<div style="
-  background: linear-gradient(135deg, #000000 0%, #001a40 100%);
-  padding:8px;                 
-  border-radius:18px;
-  border:2px solid #004080;
-  box-shadow:0 0 20px rgba(0,64,128,0.3);
-">
-  <canvas
-    id="phononCanvas"
-    width="800"
-    height="700"
-    style="
-      display:block;
-      margin:0;                
-      width:100%;
-      max-width:100%;
-      border-radius:14px;
-      background:#020617;
-    ">
-  </canvas>
-</div>
-
-<script src="{{ '/assets/js/phonon_ripple.js' | relative_url }}"></script>
-
-
-
-<p style="margin-bottom: 20px;">
-
-
-
-<h2 style="text-align:center; margin-top:40px; margin-bottom:12px;">
-  FCC Neighbor Explorer 
-</h2>
-
-<div style="
-  background: linear-gradient(135deg, #000000 0%, #001a40 100%);
-  padding:8px;
-  border-radius:18px;
-  border:2px solid #004080;
-  box-shadow:0 0 20px rgba(0,64,128,0.3);
-">
-  <canvas
-    id="fccCanvas"
-    width="800"
-    height="700"
-    style="
-      display:block;
-      margin:0;
-      width:100%;
-      max-width:100%;
-      border-radius:14px;
-      background:#020617;
-    ">
-  </canvas>
-</div>
-
-<p id="fcc-info" style="
-  text-align:center;
-  margin-top:8px;
-  color:#4b5563;
-  font-size:0.95em;
-">
-  Click any atom to see what FCC neighbor shell it belongs to.
-</p>
-
-<script src="{{ '/assets/js/fcc_neighbors.js' | relative_url }}"></script>
-
-
-
-
-<p style="margin-bottom: 20px;">
-
-
-
-
-
-
-<!-- ===================== SIMPLE PHOTO CAROUSEL ===================== -->
-<section id="photo-showcase" class="psc" style="margin-top:52px;">
-  <div class="psc-wrap">
-    <div class="psc-head">
-      <h2 class="psc-title">📸 A bit of me </h2>
-      <p class="psc-sub">Some pics of my journey.</p>
+      <div class="lab-stat-grid">
+        <div class="lab-stat">
+          <span class="lab-stat__label">Current Role</span>
+          <strong class="lab-stat__value">PhD Student, UTEP Physics</strong>
+        </div>
+        <div class="lab-stat">
+          <span class="lab-stat__label">Research Areas</span>
+          <strong class="lab-stat__value">Phonons, NiTi alloys, atomistic modeling</strong>
+        </div>
+        <div class="lab-stat">
+          <span class="lab-stat__label">Workflow</span>
+          <strong class="lab-stat__value">Python, LAMMPS, HPC, scientific data analysis</strong>
+        </div>
+      </div>
     </div>
 
-    <div class="psc-frame" aria-label="Photo carousel">
-      <button type="button" class="psc-btn psc-prev" id="psc-prev" aria-label="Previous photo">‹</button>
+    <div class="lab-home__media">
+      <div class="lab-media-frame">
+        <img
+          src="{{ '/images/phonons.gif' | relative_url }}"
+          alt="Animated phonon visualization"
+          loading="lazy"
+        >
+      </div>
+      <p class="lab-media-note">
+        Featured animation from my research workflow, focused on lattice vibrations and atomistic motion.
+      </p>
+    </div>
+  </section>
 
-      <img id="psc-img" class="psc-img"
-           src="{{ '/images/me_01.jpg' | relative_url }}"
-           alt="Photo" loading="lazy" />
-
-      <button type="button" class="psc-btn psc-next" id="psc-next" aria-label="Next photo">›</button>
+  <section class="lab-section">
+    <div class="lab-section__header">
+      <div>
+        <p class="lab-eyebrow">Selected Work</p>
+        <h2 class="lab-section__title">Research Highlights</h2>
+      </div>
+      <p class="lab-section__text">
+        A few representative examples from my recent work in lattice dynamics, thermodynamics,
+        and molecular simulation.
+      </p>
     </div>
 
-    <div class="psc-footer">
-      <div id="psc-counter" class="psc-counter" aria-label="Photo counter"></div>
-      <div id="psc-dots" class="psc-dots" aria-label="Slideshow position"></div>
+    <div class="lab-highlight-grid">
+      <article class="lab-highlight lab-highlight--dark">
+        <div class="lab-highlight__media">
+          <img
+            src="{{ '/images/phon_disp_GaAs.gif' | relative_url }}"
+            alt="Phonon dispersion animation for 2D GaAs"
+            loading="lazy"
+          >
+        </div>
+        <div class="lab-highlight__body">
+          <span class="lab-tag">Phonons and Lattice Dynamics</span>
+          <h3 class="lab-highlight__title">Phonon Dispersion in 2D GaAs</h3>
+          <p>
+            This visualization shows how vibrational modes evolve across reciprocal space in a
+            two-dimensional GaAs system, offering a compact view of stability and dynamical behavior.
+          </p>
+        </div>
+      </article>
+
+      <article class="lab-highlight">
+        <div class="lab-media-stack">
+          <div class="lab-highlight__media">
+            <img
+              src="{{ '/images/image70.gif' | relative_url }}"
+              alt="Birch-Murnaghan equation-of-state fit for NiTi with antisite defects"
+              loading="lazy"
+            >
+          </div>
+          <div class="lab-highlight__media">
+            <img
+              src="{{ '/images/image95.gif' | relative_url }}"
+              alt="Thermodynamic response of NiTi under point-defect conditions"
+              loading="lazy"
+            >
+          </div>
+        </div>
+        <div class="lab-highlight__body">
+          <span class="lab-tag">Thermodynamics and Defects</span>
+          <h3 class="lab-highlight__title">Birch-Murnaghan EOS for NiTi</h3>
+          <p>
+            These results highlight how point defects modify equilibrium volume, stiffness, and
+            thermodynamic trends in NiTi through equation-of-state fitting across multiple conditions.
+          </p>
+        </div>
+      </article>
+
+      <article class="lab-highlight lab-highlight--dark">
+        <div class="lab-highlight__media">
+          <img
+            src="{{ '/images/NiTi_bcc_B2.gif' | relative_url }}"
+            alt="Molecular dynamics simulation of a heat-driven transformation in NiTi"
+            loading="lazy"
+          >
+        </div>
+        <div class="lab-highlight__body">
+          <span class="lab-tag">Molecular Dynamics</span>
+          <h3 class="lab-highlight__title">Heat-Driven Transformation in NiTi</h3>
+          <p>
+            A molecular dynamics animation of a B2 NiTi nanostructure in which one region is heated
+            toward melting while the opposite side remains fixed, revealing the evolution of the
+            solid-liquid interface at the atomic scale.
+          </p>
+        </div>
+      </article>
     </div>
-  </div>
-</section>
+  </section>
 
-<style>
-  #photo-showcase { max-width: 1500px; margin-left:auto; margin-right:auto; }
+  <section class="lab-section">
+    <div class="lab-section__header">
+      <div>
+        <p class="lab-eyebrow">Interactive Models</p>
+        <h2 class="lab-section__title">Explore the Physics</h2>
+      </div>
+      <p class="lab-section__text">
+        These interactive demos turn part of the research story into something visual and hands-on.
+      </p>
+    </div>
 
-  .psc-wrap{
-    position:relative;
-    overflow:hidden;
-    border-radius:20px;
-    padding:18px;
-    border:2px solid #004080;
-    background: linear-gradient(135deg, #000000 0%, #001a40 100%);
-    box-shadow: 0 0 28px rgba(0, 64, 128, 0.35);
-  }
-  .psc-wrap:before{
-    content:"";
-    position:absolute;
-    inset:-2px;
-    background:
-      radial-gradient(circle at 20% 10%, rgba(0,128,255,.18), transparent 40%),
-      radial-gradient(circle at 80% 90%, rgba(0,128,255,.14), transparent 45%);
-    pointer-events:none;
-  }
+    <div class="lab-tool-grid">
+      <article class="lab-tool">
+        <div class="lab-tool__copy">
+          <span class="lab-tag">Interactive Canvas</span>
+          <h3 class="lab-highlight__title">Lattice Vibration Explorer</h3>
+          <p>
+            Click anywhere on the canvas to trigger a phonon-like disturbance and watch the wave move
+            through the atomic lattice.
+          </p>
+        </div>
 
-  .psc-head{ position:relative; padding:10px 10px 14px 10px; }
-  .psc-title{ margin:0; color:#fff; font-size:1.8em; font-weight:800; letter-spacing:.3px; }
-  .psc-sub{ margin:8px 0 0 0; color:#dbeafe; opacity:.9; font-size:1.02em; line-height:1.55; }
+        <div class="lab-canvas-shell">
+          <canvas id="phononCanvas" width="800" height="700"></canvas>
+        </div>
+      </article>
 
-  .psc-frame{
-    position:relative;
-    margin-top:14px;
-    border-radius:18px;
-    overflow:hidden;
-    background: rgba(2,6,23,.55);
-    border:1px solid rgba(148,163,184,.18);
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
-    /* aspect-ratio: 3 / 2; */
-    aspect-ratio: auto;
-    height: 710px;   
-  }
+      <article class="lab-tool">
+        <div class="lab-tool__copy">
+          <span class="lab-tag">Interactive Canvas</span>
+          <h3 class="lab-highlight__title">FCC Neighbor Explorer</h3>
+          <p>
+            Rotate the cluster, inspect atoms, and identify the neighbor shell associated with each
+            atomic position in a face-centered cubic structure.
+          </p>
+        </div>
 
-  .psc-img{
-    width:100%;
-    height:100%;
-    object-fit: cover;
-    display:block;
-    transition: opacity 260ms ease, transform 260ms ease, filter 260ms ease;
-    box-shadow: 0 0 22px rgba(0,64,128,.35);
-    will-change: opacity, transform, filter;
-  }
-  .psc-img.is-fading{
-    opacity:0.15;
-    transform: scale(.995);
-    filter: blur(.6px);
-  }
+        <div class="lab-canvas-shell">
+          <canvas id="fccCanvas" width="800" height="700"></canvas>
+        </div>
 
-  .psc-btn{
-    position:absolute;
-    top:50%;
-    transform: translateY(-50%);
-    width:44px;
-    height:44px;
-    border-radius:999px;
-    border:1px solid rgba(255,255,255,.18);
-    background: rgba(0,0,0,.35);
-    color:#fff;
-    font-size:28px;
-    line-height:40px;
-    cursor:pointer;
-    display:grid;
-    place-items:center;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: background .12s ease, transform .12s ease;
-    user-select:none;
-    z-index:5;
-  }
-  .psc-btn:hover{ background: rgba(0,0,0,.55); }
-  .psc-btn:active{ transform: translateY(-50%) scale(.96); }
-  .psc-prev{ left: 12px; }
-  .psc-next{ right: 12px; }
+        <p id="fcc-info" class="lab-tool__note">
+          Click an atom to identify its FCC neighbor shell.
+        </p>
+      </article>
+    </div>
+  </section>
 
-  .psc-footer{
-    position:relative;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-    margin-top:12px;
-    padding: 0 6px;
-    flex-wrap:wrap;
-  }
-  .psc-counter{
-    color: rgba(255,255,255,.75);
-    font-size: .95rem;
-    white-space: nowrap;
-  }
-  .psc-dots{
-    display:flex;
-    gap:8px;
-    align-items:center;
-  }
-  .psc-dot{
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    background: rgba(219,234,254,.35);
-    border:1px solid rgba(219,234,254,.25);
-    opacity:.75;
-    cursor:pointer;
-    transition: transform 220ms ease, opacity 220ms ease, background 220ms ease;
-  }
-  .psc-dot.is-on{
-    background: rgba(255,255,255,.92);
-    opacity:1;
-    transform: scale(1.15);
-  }
+  <section id="photo-showcase" class="psc">
+    <div class="psc-wrap">
+      <div class="psc-head">
+        <p class="lab-eyebrow">Beyond the Simulations</p>
+        <h2 class="psc-title">Field Notes</h2>
+        <p class="psc-sub">
+          A small set of moments from research, conferences, and day-to-day life in science.
+        </p>
+      </div>
 
-  @media (prefers-reduced-motion: reduce){
-    .psc-img, .psc-btn, .psc-dot { transition:none !important; }
-  }
-</style>
+      <div class="psc-frame" aria-label="Photo carousel">
+        <button type="button" class="psc-btn psc-prev" id="psc-prev" aria-label="Previous photo">&lsaquo;</button>
+
+        <img
+          id="psc-img"
+          class="psc-img"
+          src="{{ '/images/me_01.jpg' | relative_url }}"
+          alt="Diego photo 1"
+          loading="lazy"
+        >
+
+        <button type="button" class="psc-btn psc-next" id="psc-next" aria-label="Next photo">&rsaquo;</button>
+      </div>
+
+      <div class="psc-footer">
+        <div id="psc-counter" class="psc-counter" aria-label="Photo counter"></div>
+        <div id="psc-dots" class="psc-dots" aria-label="Slideshow position"></div>
+      </div>
+    </div>
+  </section>
+</div>
 
 <script id="ps-photos-json" type="application/json">
 [
-  { "src": "{{ '/images/me_01.jpg' | relative_url }}", "alt": "Diego — photo 1" },
-  { "src": "{{ '/images/me_02.jpg' | relative_url }}", "alt": "Diego — photo 2" },
-  { "src": "{{ '/images/me_03.jpg' | relative_url }}", "alt": "Diego — photo 3" },
-  { "src": "{{ '/images/me_04.jpg' | relative_url }}", "alt": "Diego — photo 4" },
-  { "src": "{{ '/images/me_05.jpg' | relative_url }}", "alt": "Diego — photo 5" },
-  { "src": "{{ '/images/me_06.jpg' | relative_url }}", "alt": "Diego — photo 6" },
-  { "src": "{{ '/images/me_07.jpg' | relative_url }}", "alt": "Diego — photo 7" },
-  { "src": "{{ '/images/me_08.jpg' | relative_url }}", "alt": "Diego — photo 8" },
-  { "src": "{{ '/images/me_09.jpg' | relative_url }}", "alt": "Diego — photo 9" },
-  { "src": "{{ '/images/me_10.jpg' | relative_url }}", "alt": "Diego — photo 10" },
-  { "src": "{{ '/images/me_11.jpg' | relative_url }}", "alt": "Diego — photo 11" },
-  { "src": "{{ '/images/me_12.jpg' | relative_url }}", "alt": "Diego — photo 12" },
-  { "src": "{{ '/images/me_13.jpg' | relative_url }}", "alt": "Diego — photo 13" },
-  { "src": "{{ '/images/me_14.jpg' | relative_url }}", "alt": "Diego — photo 14" },
-  { "src": "{{ '/images/me_07-2.jpg' | relative_url }}", "alt": "Diego — photo 15" }
-
+  { "src": "{{ '/images/me_01.jpg' | relative_url }}", "alt": "Diego photo 1" },
+  { "src": "{{ '/images/me_02.jpg' | relative_url }}", "alt": "Diego photo 2" },
+  { "src": "{{ '/images/me_03.jpg' | relative_url }}", "alt": "Diego photo 3" },
+  { "src": "{{ '/images/me_04.jpg' | relative_url }}", "alt": "Diego photo 4" },
+  { "src": "{{ '/images/me_05.jpg' | relative_url }}", "alt": "Diego photo 5" },
+  { "src": "{{ '/images/me_06.jpg' | relative_url }}", "alt": "Diego photo 6" },
+  { "src": "{{ '/images/me_07.jpg' | relative_url }}", "alt": "Diego photo 7" },
+  { "src": "{{ '/images/me_08.jpg' | relative_url }}", "alt": "Diego photo 8" },
+  { "src": "{{ '/images/me_09.jpg' | relative_url }}", "alt": "Diego photo 9" },
+  { "src": "{{ '/images/me_10.jpg' | relative_url }}", "alt": "Diego photo 10" },
+  { "src": "{{ '/images/me_11.jpg' | relative_url }}", "alt": "Diego photo 11" },
+  { "src": "{{ '/images/me_12.jpg' | relative_url }}", "alt": "Diego photo 12" },
+  { "src": "{{ '/images/me_13.jpg' | relative_url }}", "alt": "Diego photo 13" },
+  { "src": "{{ '/images/me_14.jpg' | relative_url }}", "alt": "Diego photo 14" },
+  { "src": "{{ '/images/me_07-2.jpg' | relative_url }}", "alt": "Diego photo 15" }
 ]
 </script>
 
+<script src="{{ '/assets/js/phonon_ripple.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/fcc_neighbors.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/photo_showcase.js' | relative_url }}"></script>
-
 
 
 

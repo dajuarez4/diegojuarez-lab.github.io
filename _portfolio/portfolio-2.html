@@ -1,80 +1,56 @@
 ---
-title: "Advanced Study of Nickel-Titanium Alloy: Effects of Point Defects on Mechanical and Thermodynamic Properties" 
-excerpt: "High-throughput first-principles calculations of point defects are emerging as a powerful tool to accelerate materials discovery in applications. Substitutional, antisite, and vacancy defects can play an important role in the mechanical and thermal  properties of intermetallic alloys.  
-In this present work I compute the thermal and mechanical properties of shape-memory alloy nickel-titaniun (NiTi) in 
-the B19’ martensitic and B2 austenitic phases from molecular dynamics (MD), using a second nearest neighbor (2NN)
-modified embedded atom method (MEAM) classical potential in the temperature range from 200K to 600K 
-and composition range from 45 atomic percent to 55 atomic percent nickel. We developed and used a python framework 
-to generate input files, run the simulations, and analyze the data, which we call Utilities To Execute Pipelines (UTEP).
-Thirty-nine lattice parameters and five temperatures were simulated for eleven distinct compositions around equiatomicity,
-for antisite defects each with three distinct defect concentrations on 16,000-atom supercells, meanwhile for vacancy defects 
-each with three distinct defect concentrations, for a total of 45,045 MD simulations of 2000 time steps each with a time step 
-size of 5 fs. We extracted temperature-dependent materials parameters from fits to the internal energies by fitting the 
-Birch-Murnaghan equation of state. Thermodynamic properties such as the vibrational entropy were obtained using two 
-different approaches from the materials parameters the first one was using the Moruzzi-Janak-Schwarz 
- approximation and secondly from the integration de of the density of states and the Bose-Einstein statics. Finally, the configurational entropy due to the defects was obtained from the Warren-Cowley parameters up to fourth nearest neighbors. Defects are energetically unfavorable,
-but can become thermodynamically stabilized at high temperature, particularly on the nickel-rich side. 
-The bulk modulus decreases with temperature in the nickel-rich side, while the opposite is observed on the 
-titanium-rich side."
+title: "NiTi Point Defects and Thermodynamic Modeling"
+excerpt: "Master's thesis work on point defects in NiTi, combining molecular dynamics, equation-of-state fitting, and thermodynamic analysis across temperature and composition."
 collection: portfolio
 ---
 
+<div class="research-project">
+  <div class="research-project__intro">
+    <p class="research-project__lede">
+      This project corresponds to my master's thesis, titled
+      <strong>Advanced Study of Nickel-Titanium Alloy: Effects of Point Defects on Mechanical and Thermodynamic Properties</strong>.
+    </p>
+    <p>
+      I investigated how substitutional, antisite, and vacancy defects influence the mechanical and
+      thermal response of shape-memory alloy NiTi in the B19' martensitic and B2 austenitic phases.
+      The work relied on molecular dynamics with a second nearest-neighbor modified embedded atom
+      method potential across temperatures from 200 K to 600 K and compositions from 45 to 55 atomic
+      percent nickel.
+    </p>
+    <p>
+      The workflow combined automated job generation, large parameter sweeps, equation-of-state
+      fitting, and thermodynamic post-processing. In total, the study covered 45,045 simulations,
+      allowing systematic comparison of defect concentration, lattice parameter, temperature,
+      and composition.
+    </p>
+  </div>
 
+  <div class="research-project__actions">
+    <a class="lab-button lab-button--primary"
+       href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=dFHdjJcAAAAJ&citation_for_view=dFHdjJcAAAAJ:d1gkVwhDpl0C"
+       target="_blank" rel="noopener">View Thesis on Google Scholar</a>
+  </div>
 
-<p>
-  <strong>Thesis:</strong> This work corresponds to my master’s thesis. You can read or download it directly on Google Scholar.
-</p>
+  <section class="research-project__section">
+    <h2 class="research-project__section-title">Selected Figures</h2>
+    <p class="research-project__section-text">
+      Representative figures from the project, including Debye temperature, lattice parameters,
+      density of states, phonon dispersion, and fitted thermodynamic trends for antisite and vacancy defects.
+    </p>
 
-<p style="text-align:center; margin-top:16px;">
-  <a class="btn btn--primary"
-     href="https://scholar.google.com/citations?view_op=view_citation&hl=es&user=dFHdjJcAAAAJ&citation_for_view=dFHdjJcAAAAJ:d1gkVwhDpl0C"
-     target="_blank" rel="noopener">View Thesis on Google Scholar</a>
-</p>
-
-<hr style="margin:22px 0; opacity:.25;">
-
-<h3>Selected Figures</h3>
-<p style="margin-top:-6px; opacity:.88;">
-  Thermodynamic and mechanical behavior of NiTi at finite temperature, including phonon dispersion, density of states,
-  and fitted materials parameters across concentrations and point-defect conditions (vacancies and antisites).
-</p>
-
-<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin-top:14px;">
-  
-  <img src="{{ '/images/deby_temp_antisite-2.jpg' | relative_url }}" alt="Debye temperature antisite" 
-       style="width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
- 
-  <img src="{{ '/images/Lattice_par_antisite (2).png' | relative_url }}" alt="Lattice parameter antisite" 
-       style="width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
-
-  <img src="{{ '/images/entropic_term_antisite_defect-3.png' | relative_url }}" alt="Entropic term antisite defect"
-       style="width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
-
-  <img src="{{ '/images/DOS_with_lattice_par3.00-6.png' | relative_url }}" alt="Density of States with Lattice Parameter 3.00-6"
-       style="width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
- 
-  <img src="{{ '/images/DOS_Concentration51-49.png' | relative_url }}" alt="Density of States Concentration 51-49"
-       style="width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
- 
-  <img src="{{ '/images/m5-PHONON.png' | relative_url }}" alt="Phonon M5 mode comparison"
-       style="width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
-
-  <img src="{{ '/images/Plot-0.50-Ni-0.50-Ti-T-10.png' | relative_url }}" alt="Plot 0.50 Ni 0.50 Ti T=10"
-       style="width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
-
-  <img src="{{ '/images/phon_disp3.00_ant2-3.png' | relative_url }}" alt="Phonon dispersion (a=3.00, antisite 2%)"
-      style="width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
- 
-  <img src="{{ '/images/phon_disp3.00-5.png' | relative_url }}" alt="Phonon dispersion (a=3.00)"
-       style="width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
-  
-  <img src="{{ '/images/scatter_T_vs_P_5050_5149.png' | relative_url }}" alt="Temperature vs Pressure scatter (Ni50Ti50 / Ni51Ti49)"
-       style="width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
-  
-  <img src="{{ '/images/regression_linear_diff_eenrgies (1).png' | relative_url }}" alt="Linear regression of defect energies"
-       style="width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
-  
-  <img src="{{ '/images/regression_linear_diff_eenrgies_vacancies-2.png' | relative_url }}" alt="Linear regression of defect energies (vacancies)"
-       style="width:100%; border-radius:14px; box-shadow:0 0 15px rgba(0,0,0,0.18);" loading="lazy">
-
+    <div class="project-gallery">
+      <img src="{{ '/images/deby_temp_antisite-2.jpg' | relative_url }}" alt="Debye temperature for antisite defects in NiTi" loading="lazy">
+      <img src="{{ '/images/Lattice_par_antisite (2).png' | relative_url }}" alt="Lattice parameter trends for antisite defects in NiTi" loading="lazy">
+      <img src="{{ '/images/entropic_term_antisite_defect-3.png' | relative_url }}" alt="Entropic term for antisite defects in NiTi" loading="lazy">
+      <img src="{{ '/images/DOS_with_lattice_par3.00-6.png' | relative_url }}" alt="Density of states with lattice parameter changes in NiTi" loading="lazy">
+      <img src="{{ '/images/DOS_Concentration51-49.png' | relative_url }}" alt="Density of states comparison for NiTi concentrations 51-49" loading="lazy">
+      <img src="{{ '/images/m5-PHONON.png' | relative_url }}" alt="Comparison of the M5 phonon mode in NiTi" loading="lazy">
+      <img src="{{ '/images/Plot-0.50-Ni-0.50-Ti-T-10.png' | relative_url }}" alt="NiTi thermodynamic plot at equiatomic composition" loading="lazy">
+      <img src="{{ '/images/phon_disp3.00_ant2-3.png' | relative_url }}" alt="Phonon dispersion for NiTi with antisite concentration of 2 percent" loading="lazy">
+      <img src="{{ '/images/phon_disp3.00-5.png' | relative_url }}" alt="Phonon dispersion for NiTi at lattice parameter 3.00" loading="lazy">
+      <img src="{{ '/images/scatter_T_vs_P_5050_5149.png' | relative_url }}" alt="Temperature versus pressure comparison for Ni50Ti50 and Ni51Ti49" loading="lazy">
+      <img src="{{ '/images/regression_linear_diff_eenrgies (1).png' | relative_url }}" alt="Linear regression of NiTi defect energies" loading="lazy">
+      <img src="{{ '/images/regression_linear_diff_eenrgies_vacancies-2.png' | relative_url }}" alt="Linear regression of NiTi vacancy defect energies" loading="lazy">
+    </div>
+  </section>
 </div>
