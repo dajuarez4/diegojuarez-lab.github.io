@@ -139,7 +139,19 @@ button {
   color: var(--lab-ink-soft);
 }
 
-.lab-home__actions,
+.lab-home__actions {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr) max-content;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.lab-home__actions .lab-button--ghost {
+  justify-self: end;
+}
+
 .research-project__actions {
   display: flex;
   flex-wrap: wrap;
@@ -802,6 +814,14 @@ button {
 @media (max-width: 640px) {
   .lab-highlight-grid {
     grid-template-columns: 1fr;
+  }
+
+  .lab-home__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-home__actions .lab-button--ghost {
+    justify-self: start;
   }
 
   .lab-stat-grid {
