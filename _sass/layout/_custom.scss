@@ -285,6 +285,7 @@ button {
 }
 
 .lab-highlight-grid,
+.lab-tool-grid,
 .cv-grid {
   display: grid;
   gap: 1.25rem;
@@ -295,7 +296,8 @@ button {
 }
 
 .lab-tool-grid {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
 }
 
 .lab-highlight,
@@ -316,6 +318,10 @@ button {
   display: grid;
   gap: 1rem;
   padding: 1.15rem;
+}
+
+.lab-tool {
+  padding: 1.35rem;
 }
 
 .lab-highlight--dark {
@@ -402,6 +408,11 @@ button {
 .lab-tool__copy {
   display: grid;
   gap: 0.7rem;
+  max-width: 52rem;
+}
+
+.lab-canvas-shell {
+  padding: 1rem;
 }
 
 .lab-canvas-shell canvas {
@@ -409,7 +420,8 @@ button {
   width: 100%;
   max-width: 100%;
   height: auto;
-  border-radius: 1.1rem;
+  aspect-ratio: 16 / 10;
+  border-radius: 1.2rem;
   background: #020617;
 }
 

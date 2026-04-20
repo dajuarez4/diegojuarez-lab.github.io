@@ -3,8 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!canvas) return; 
 
   const ctx = canvas.getContext("2d");
-  const width = canvas.width;
-  const height = canvas.height;
+  if (!ctx) return;
+
+  let width = 0;
+  let height = 0;
   const info = document.getElementById("fcc-info");
   canvas.style.touchAction = "none";
 
@@ -12,16 +14,32 @@ document.addEventListener("DOMContentLoaded", function () {
     if (info) info.textContent = msg;
   }
 
+  function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    width = rect.width;
+    height = rect.height;
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
   function getCanvasPoint(evt) {
     const rect = canvas.getBoundingClientRect();
-    const scaleX = width / rect.width;
-    const scaleY = height / rect.height;
-
     return {
-      x: (evt.clientX - rect.left) * scaleX,
-      y: (evt.clientY - rect.top) * scaleY
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
     };
   }
+
+  if (typeof ResizeObserver !== "undefined") {
+    const resizeObserver = new ResizeObserver(() => resizeCanvas());
+    resizeObserver.observe(canvas);
+  }
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
 
   // -------------------------------
   // Construir supercelda FCC 3x3x3 centrada
@@ -319,6 +337,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // Bucle de dibujo (rotación + hover)
   // -------------------------------
   function updateAndDraw() {
+    if (!width || !height) {
+      requestAnimationFrame(updateAndDraw);
+      return;
+    }
+
     // Fondo
     const grad = ctx.createRadialGradient(
       width / 2, height / 2, 10,
@@ -337,7 +360,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // const scale = 200;
     // const zOffset = 3;
-    const baseScale = 200;
+    const baseScale = Math.min(width, height) * 0.3;
     const scale = baseScale * zoom; // escala depende del zoom
     const zOffset = 3;
 

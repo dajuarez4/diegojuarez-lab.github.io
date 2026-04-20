@@ -3,45 +3,61 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
+  if (!ctx) return;
 
-  const width = canvas.width;
-  const height = canvas.height;
+  let width = 0;
+  let height = 0;
 
   // -------------------------------
-  // Parámetros de la red atómica
+  // Atomic lattice
   // -------------------------------
-  const cols = 20;   // átomos en x
-  const rows = 10;    // átomos en y
+  const cols = 20;
+  const rows = 10;
   const atoms = [];
-  const paddingX = 25;
-  const paddingY = 25;
 
-  const dx = (width - 2 * paddingX) / (cols - 1);
-  const dy = (height - 2 * paddingY) / (rows - 1);
+  function rebuildAtoms() {
+    atoms.length = 0;
 
-  for (let j = 0; j < rows; j++) {
-    for (let i = 0; i < cols; i++) {
-      const x = paddingX + i * dx;
-      const y = paddingY + j * dy;
-      atoms.push({ baseX: x, baseY: y });
+    const paddingX = Math.max(22, width * 0.035);
+    const paddingY = Math.max(22, height * 0.05);
+    const stepX = cols > 1 ? (width - 2 * paddingX) / (cols - 1) : 0;
+    const stepY = rows > 1 ? (height - 2 * paddingY) / (rows - 1) : 0;
+
+    for (let j = 0; j < rows; j++) {
+      for (let i = 0; i < cols; i++) {
+        atoms.push({
+          baseX: paddingX + i * stepX,
+          baseY: paddingY + j * stepY
+        });
+      }
     }
   }
 
   // -------------------------------
-  // Ondas (pulsos de fonones)
+  // Phonon-like pulses
   // -------------------------------
   const waves = [];
-  const WAVE_LIFETIME = 3500; // ms
+  const WAVE_LIFETIME = 3500;
   canvas.style.touchAction = "none";
+
+  function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    width = rect.width;
+    height = rect.height;
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    rebuildAtoms();
+  }
 
   function getCanvasPoint(evt) {
     const rect = canvas.getBoundingClientRect();
-    const scaleX = width / rect.width;
-    const scaleY = height / rect.height;
-
     return {
-      x: (evt.clientX - rect.left) * scaleX,
-      y: (evt.clientY - rect.top) * scaleY
+      x: evt.clientX - rect.left,
+      y: evt.clientY - rect.top
     };
   }
 
@@ -56,10 +72,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  if (typeof ResizeObserver !== "undefined") {
+    const resizeObserver = new ResizeObserver(() => resizeCanvas());
+    resizeObserver.observe(canvas);
+  }
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
   // -------------------------------
-  // Animación principal
+  // Main animation
   // -------------------------------
   function draw(time) {
+    if (!width || !height) {
+      requestAnimationFrame(draw);
+      return;
+    }
+
     // Fondo
     const grad = ctx.createRadialGradient(
       width / 2, height / 2, 10,
@@ -138,8 +166,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (amp > 1) amp = 1;
       if (amp < -1) amp = -1;
 
-      const shiftY = amp * 22;                        // desplazamiento visible
-      const radius = 6 + 8 * Math.abs(amp);           // tamaño visible
+      const shiftY = amp * Math.min(24, height * 0.035);
+      const radius = 4 + 7 * Math.abs(amp);
 
       const intensity = Math.floor(150 + 100 * Math.abs(amp));
       const green = intensity;
