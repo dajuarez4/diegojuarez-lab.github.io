@@ -129,6 +129,25 @@ redirect_from:
           </p>
         </div>
       </article>
+
+      <article class="lab-highlight">
+        <div class="lab-highlight__media lab-highlight__media--contain">
+          <img
+            src="{{ '/images/method_of_images_grounded_sphere.gif' | relative_url }}"
+            alt="Method of images animation for a grounded conducting sphere"
+            loading="lazy"
+          >
+        </div>
+        <div class="lab-highlight__body">
+          <span class="lab-tag">Computational Electrodynamics</span>
+          <h3 class="lab-highlight__title">Method of Images for a Grounded Sphere</h3>
+          <p>
+            This project is a graduate-level electrodynamics study based on Jackson, combining
+            derivations, computational notebooks, and visualizations. The animation shows how the
+            image charge changes as the external source moves so that the sphere remains at zero potential.
+          </p>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -235,7 +254,6 @@ redirect_from:
 <script src="{{ '/assets/js/phonon_ripple.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/fcc_neighbors.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/photo_showcase.js' | relative_url }}"></script>
-
 
 
 

@@ -282,13 +282,15 @@ button {
 }
 
 .lab-highlight-grid,
-.lab-tool-grid,
 .cv-grid {
   display: grid;
   gap: 1.25rem;
 }
 
-.lab-highlight-grid,
+.lab-highlight-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .lab-tool-grid {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
@@ -330,6 +332,11 @@ button {
 .lab-highlight__media img {
   height: 100%;
   object-fit: cover;
+}
+
+.lab-highlight__media--contain img {
+  object-fit: contain;
+  background: #0b1420;
 }
 
 .lab-highlight__body {
@@ -751,6 +758,10 @@ button {
 }
 
 @media (max-width: 640px) {
+  .lab-highlight-grid {
+    grid-template-columns: 1fr;
+  }
+
   .lab-home__hero,
   .lab-highlight,
   .lab-tool,

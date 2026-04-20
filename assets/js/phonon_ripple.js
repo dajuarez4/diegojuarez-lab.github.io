@@ -32,12 +32,23 @@ document.addEventListener("DOMContentLoaded", function () {
   // -------------------------------
   const waves = [];
   const WAVE_LIFETIME = 3500; // ms
+  canvas.style.touchAction = "none";
 
-  canvas.addEventListener("mousedown", (evt) => {
+  function getCanvasPoint(evt) {
     const rect = canvas.getBoundingClientRect();
-    const x = evt.clientX - rect.left;
-    const y = evt.clientY - rect.top;
+    const scaleX = width / rect.width;
+    const scaleY = height / rect.height;
 
+    return {
+      x: (evt.clientX - rect.left) * scaleX,
+      y: (evt.clientY - rect.top) * scaleY
+    };
+  }
+
+  canvas.addEventListener("pointerdown", (evt) => {
+    if (evt.pointerType === "mouse" && evt.button !== 0) return;
+
+    const { x, y } = getCanvasPoint(evt);
     waves.push({
       x,
       y,

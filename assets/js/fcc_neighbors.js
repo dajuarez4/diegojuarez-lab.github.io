@@ -6,9 +6,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const width = canvas.width;
   const height = canvas.height;
   const info = document.getElementById("fcc-info");
+  canvas.style.touchAction = "none";
 
   function setInfo(msg) {
     if (info) info.textContent = msg;
+  }
+
+  function getCanvasPoint(evt) {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = width / rect.width;
+    const scaleY = height / rect.height;
+
+    return {
+      x: (evt.clientX - rect.left) * scaleX,
+      y: (evt.clientY - rect.top) * scaleY
+    };
   }
 
   // -------------------------------
@@ -260,9 +272,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // });
 
   canvas.addEventListener("mousemove", function (evt) {
-    const rect = canvas.getBoundingClientRect();
-    mouseX = evt.clientX - rect.left;
-    mouseY = evt.clientY - rect.top;
+    const point = getCanvasPoint(evt);
+    mouseX = point.x;
+    mouseY = point.y;
   
     if (!isDragging) return;
   
