@@ -12,17 +12,17 @@ redirect_from:
     <div class="lab-home__intro">
       <div class="lab-home__copy">
         <p class="lab-eyebrow">Computational Physics and Materials Modeling</p>
-        <h1 class="lab-home__title">Diego Armando Juarez Rosales</h1>
-      <p class="lab-home__lead">
-        I am a PhD student in Physics at The University of Texas at El Paso. This site brings together
-        selected research projects, conference material, and interactive visualizations from my work in
-        lattice dynamics, atomistic simulation, and scientific workflow automation.
-      </p>
-    </div>
+        <h1 class="lab-home__title">Diego Juarez</h1>
+        <p class="lab-home__lead">
+          I am a PhD student in Physics at The University of Texas at El Paso. This site brings together
+          selected research projects, conference material, and interactive visualizations from my work in
+          lattice dynamics, atomistic simulation, and scientific workflow automation.
+        </p>
+      </div>
 
-    <div class="lab-home__media">
-      <div class="lab-media-frame">
-        <img
+      <div class="lab-home__media">
+        <div class="lab-media-frame">
+          <img
             src="{{ '/images/phonons.gif' | relative_url }}"
             alt="Animated phonon visualization"
             loading="lazy"
