@@ -256,12 +256,13 @@ redirect_from:
   { "src": "{{ '/images/IMG_3132.jpg' | relative_url }}", "alt": "Diego photo 21" },
   { "src": "{{ '/images/IMG_6930.jpg' | relative_url }}", "alt": "Diego photo 22" },
   { "src": "{{ '/images/dji_mimo_20251006_211238_20251006211239_1759804625959_photo-2.jpg' | relative_url }}", "alt": "Diego photo 23" },
-  { "src": "{{ '/images/dji_mimo_20260214_125438_20260214125439_1771100502988_photo-2.jpg' | relative_url }}", "alt": "Diego photo 24" }
+  { "src": "{{ '/images/dji_mimo_20260214_125438_20260214125439_1771100502988_photo-2.jpg' | relative_url }}", "alt": "Diego photo 24" },
+  { "src": "{{ '/images/98024DA1-30BB-4DAE-A7E5-F2E73166FDEF 2.jpg' | relative_url }}", "alt": "Diego photo 25" },
+  { "src": "{{ '/images/9CCB7D9C-E503-47CD-BE34-A9F9864A5FDE 2.PNG' | relative_url }}", "alt": "Diego photo 26" }
 ]
 </script>
 
 <script src="{{ '/assets/js/phonon_ripple.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/fcc_neighbors.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/photo_showcase.js' | relative_url }}"></script>
-
 
