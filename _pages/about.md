@@ -156,6 +156,69 @@ redirect_from:
   <section class="lab-section">
     <div class="lab-section__header">
       <div>
+        <p class="lab-eyebrow">Soniphons</p>
+        <h2 class="lab-section__title">Phonon Motion as Sound</h2>
+      </div>
+      <p class="lab-section__text">
+        Three recent iron-phase videos where lattice motion is paired with audio generated from the
+        vibrational frequencies, so the phonon response can be seen and heard together.
+      </p>
+    </div>
+
+    <div class="project-video-grid">
+      <article class="project-video-card">
+        <div class="project-video-card__media">
+          <video controls preload="metadata" playsinline>
+            <source src="{{ '/assets/videos/phonon-bcc-with-audio.mp4' | relative_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="project-video-card__body">
+          <span class="lab-tag">BCC Iron</span>
+          <h3 class="project-video-card__title">BCC Soniphon</h3>
+          <p class="project-video-card__text">
+            Body-centered cubic iron with a synchronized soundtrack built from the phonon-frequency content.
+          </p>
+        </div>
+      </article>
+
+      <article class="project-video-card">
+        <div class="project-video-card__media">
+          <video controls preload="metadata" playsinline>
+            <source src="{{ '/assets/videos/phonon-fcc-with-audio.mp4' | relative_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="project-video-card__body">
+          <span class="lab-tag">FCC Iron</span>
+          <h3 class="project-video-card__title">FCC Soniphon</h3>
+          <p class="project-video-card__text">
+            Face-centered cubic iron rendered with the same sonification workflow for direct structural comparison.
+          </p>
+        </div>
+      </article>
+
+      <article class="project-video-card">
+        <div class="project-video-card__media">
+          <video controls preload="metadata" playsinline>
+            <source src="{{ '/assets/videos/phonon-hcp-with-audio.mp4' | relative_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="project-video-card__body">
+          <span class="lab-tag">HCP Iron</span>
+          <h3 class="project-video-card__title">HCP Soniphon</h3>
+          <p class="project-video-card__text">
+            Hexagonal close-packed iron completing the three-phase audio-visual comparison.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="lab-section">
+    <div class="lab-section__header">
+      <div>
         <p class="lab-eyebrow">Interactive Models</p>
         <h2 class="lab-section__title">Explore the Physics</h2>
       </div>

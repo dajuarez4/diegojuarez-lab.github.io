@@ -793,6 +793,54 @@ button {
   box-shadow: 0 14px 30px rgba(10, 26, 45, 0.1);
 }
 
+.project-video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.project-video-card {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+  border: 1px solid var(--lab-line);
+  border-radius: 1.4rem;
+  background: linear-gradient(180deg, rgba(244, 236, 223, 0.55) 0%, #fff 100%);
+  box-shadow: 0 14px 30px rgba(10, 26, 45, 0.08);
+}
+
+.project-video-card__media {
+  padding: 0.7rem;
+  border-radius: 1.1rem;
+  background: linear-gradient(180deg, #11253d 0%, #08111e 100%);
+}
+
+.project-video-card video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.8rem;
+}
+
+.project-video-card__body {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.project-video-card__title {
+  margin: 0;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-size: 1.15rem;
+  color: var(--lab-ink);
+}
+
+.project-video-card__text {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--lab-ink-soft);
+}
+
 @media (max-width: 900px) {
   .lab-home__intro {
     grid-template-columns: 1fr;
